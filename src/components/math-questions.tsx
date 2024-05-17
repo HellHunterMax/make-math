@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { MathQuestion } from "./math-question";
 
-type MathQuestionProps = {
+export type MathQuestionProps = {
 	firstNumber: number;
 	secondNumber: number;
 	operator: string;
@@ -38,39 +39,6 @@ export default function MathQuestions(props: MathType) {
 			{questions.map((question, index) => (
 				<MathQuestion key={index} {...question} />
 			))}
-		</div>
-	);
-}
-
-function MathQuestion(props: MathQuestionProps) {
-	const [inputAnswer, setInputAnswer] = useState<number | null>(null);
-
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setInputAnswer(Number(e.target.value));
-	};
-
-	return (
-		<div className="flex flex-row justify-start p-4">
-			<p className="pr-2">
-				{props.firstNumber} {props.operator} {props.secondNumber} ={" "}
-				{props.answer}
-			</p>
-			<input
-				type="number"
-				value={inputAnswer ?? ""}
-				onChange={handleChange}
-			/>
-			{inputAnswer !== null && (
-				<p
-					className={`font-bold pl-2 ${
-						props.answer === inputAnswer
-							? "text-green-600"
-							: "text-red-600"
-					}`}
-				>
-					{props.answer === inputAnswer ? "GOED!" : "FOUT!"}
-				</p>
-			)}
 		</div>
 	);
 }

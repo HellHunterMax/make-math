@@ -19,8 +19,8 @@ export default function MathQuestions(props: MathType) {
 	const generateMathQuestions = () => {
 		const questions = [];
 		for (let i = 0; i < props.numberOfMaths; i++) {
-			const answer = Math.floor(Math.random() * (props.maxNumber + 1)); // answer between 0 and maxNumber
-			const firstNumber = Math.floor(Math.random() * (answer + 1)); // firstNumber between 0 and answer
+			const answer = Math.floor(Math.random() * (props.maxNumber + 1));
+			const firstNumber = Math.floor(Math.random() * (answer + 1));
 			const secondNumber = answer - firstNumber;
 			questions.push({
 				firstNumber,
@@ -32,7 +32,7 @@ export default function MathQuestions(props: MathType) {
 		return questions;
 	};
 
-	const [questions] = useState(generateMathQuestions());
+	const questions = generateMathQuestions();
 
 	return (
 		<div>

@@ -6,7 +6,7 @@ export function MathQuestion(props: MathQuestionProps) {
 	const [inputAnswer, setInputAnswer] = useState<number | null>(null);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setInputAnswer(Number(e.target.value));
+		setInputAnswer(parseInt(e.target.value));
 	};
 
 	return (

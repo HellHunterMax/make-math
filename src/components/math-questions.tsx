@@ -35,7 +35,7 @@ export default function MathQuestions(props: MathType) {
 	const questions = generateMathQuestions();
 
 	return (
-		<div>
+		<div className="flex flex-col p-4">
 			{questions.map((question, index) => (
 				<MathQuestion key={index} {...question} />
 			))}

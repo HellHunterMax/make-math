@@ -14,7 +14,7 @@ export default function QuestionWithNumberInput(
 	props: QuestionWithNumberInputProps
 ) {
 	return (
-		<>
+		<div className="p-4">
 			<p>{props.question}</p>
 			<input
 				type="number"
@@ -23,6 +23,6 @@ export default function QuestionWithNumberInput(
 				min={props.min}
 				onChange={(v) => props.setAnswer(parseInt(v.target.value))}
 			/>
-		</>
+		</div>
 	);
 }

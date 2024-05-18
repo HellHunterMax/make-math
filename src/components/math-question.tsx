@@ -10,26 +10,27 @@ export function MathQuestion(props: MathQuestionProps) {
 	};
 
 	return (
-		<div className="flex flex-row justify-start p-4">
+		<div className="flex flex-row p-4">
 			<p className="pr-2">
 				{props.firstNumber} {props.operator} {props.secondNumber} =
 			</p>
 			<input
+				className="max-w-24"
 				type="number"
 				value={inputAnswer ?? ""}
 				onChange={handleChange}
 			/>
-			{inputAnswer !== null && (
-				<p
-					className={`font-bold pl-2 ${
-						props.answer === inputAnswer
-							? "text-green-600"
-							: "text-red-600"
-					}`}
-				>
-					{props.answer === inputAnswer ? "GOED!" : "FOUT!"}
-				</p>
-			)}
+
+			<p
+				className={`font-bold pl-2 min-w-20 ${
+					props.answer === inputAnswer
+						? "text-green-600"
+						: "text-red-600"
+				}`}
+			>
+				{inputAnswer !== null &&
+					(props.answer === inputAnswer ? "GOED!" : "FOUT!")}
+			</p>
 		</div>
 	);
 }

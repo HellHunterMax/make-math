@@ -10,15 +10,18 @@ export function MathQuestion(props: MathQuestionProps) {
 	};
 
 	return (
-		<div className="flex flex-row justify-start p-4">
+		<div className="flex flex-row p-4">
 			<p className="pr-2">
 				{props.firstNumber} {props.operator} {props.secondNumber} =
 			</p>
 			<input
+				className="max-w-24"
 				type="number"
 				value={inputAnswer ?? ""}
 				onChange={handleChange}
 			/>
+			{inputAnswer === null && <p></p>}
+
 			{inputAnswer !== null && (
 				<p
 					className={`font-bold pl-2 ${

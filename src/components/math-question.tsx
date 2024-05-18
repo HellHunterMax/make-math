@@ -20,19 +20,17 @@ export function MathQuestion(props: MathQuestionProps) {
 				value={inputAnswer ?? ""}
 				onChange={handleChange}
 			/>
-			{inputAnswer === null && <p></p>}
 
-			{inputAnswer !== null && (
-				<p
-					className={`font-bold pl-2 ${
-						props.answer === inputAnswer
-							? "text-green-600"
-							: "text-red-600"
-					}`}
-				>
-					{props.answer === inputAnswer ? "GOED!" : "FOUT!"}
-				</p>
-			)}
+			<p
+				className={`font-bold pl-2 min-w-20 ${
+					props.answer === inputAnswer
+						? "text-green-600"
+						: "text-red-600"
+				}`}
+			>
+				{inputAnswer !== null &&
+					(props.answer === inputAnswer ? "GOED!" : "FOUT!")}
+			</p>
 		</div>
 	);
 }

@@ -1,33 +1,28 @@
 "use client";
 
-import { useState } from "react";
 import { MathQuestion } from "./math-question";
+import { Operator } from "@/enums/operator";
+import useMath from "@/hooks/useMath";
 
 export type MathQuestionProps = {
 	firstNumber: number;
 	secondNumber: number;
-	operator: string;
+	operator: Operator;
 	answer: number;
 };
 
 export type MathType = {
 	numberOfMaths: number;
 	maxNumber: number;
+	operator: Operator;
 };
 
 export default function MathQuestions(props: MathType) {
+	const mathGenerator = useMath(props.operator, props.maxNumber);
 	const generateMathQuestions = () => {
 		const questions = [];
 		for (let i = 0; i < props.numberOfMaths; i++) {
-			const answer = Math.floor(Math.random() * (props.maxNumber + 1));
-			const firstNumber = Math.floor(Math.random() * (answer + 1));
-			const secondNumber = answer - firstNumber;
-			questions.push({
-				firstNumber,
-				secondNumber,
-				operator: "+",
-				answer,
-			});
+			questions.push(mathGenerator.generateMathEquation());
 		}
 		return questions;
 	};

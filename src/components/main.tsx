@@ -3,6 +3,7 @@
 import { useState } from "react";
 import QuestionWithNumberInput from "./question-with-answer";
 import MathQuestions from "./math-questions";
+import { Operator } from "@/enums/operator";
 
 export default function Main() {
 	const [numberOfMaths, setNumberOfQuestions] = useState(10);
@@ -10,23 +11,17 @@ export default function Main() {
 	const [showMathQuestions, setshowMathQuestions] = useState(false);
 	return (
 		<>
-			<button
-				className="border-4 border-cyan-600 px-4 hover:bg-cyan-600 rounded m-4"
-				onClick={() => setshowMathQuestions(!showMathQuestions)}
-			>
-				{!showMathQuestions ? "SOMMEN Maken!" : "Aantal veranderen"}
-			</button>
 			{!showMathQuestions && (
 				<div>
 					<QuestionWithNumberInput
-						question="Hoeveel vragen wil je krijgen?"
+						question="Hoeveel sommen wil je krijgen?"
 						setAnswer={setNumberOfQuestions}
 						initial={numberOfMaths}
 						max={20}
 						min={1}
 					/>
 					<QuestionWithNumberInput
-						question="wat mag het hoogste getal zijn?"
+						question="wat mag het hoogste antwoord zijn?"
 						setAnswer={setmaxNumber}
 						initial={maxNumber}
 						max={100}
@@ -38,8 +33,15 @@ export default function Main() {
 				<MathQuestions
 					maxNumber={maxNumber}
 					numberOfMaths={numberOfMaths}
+					operator={Operator.Add}
 				></MathQuestions>
 			)}
+			<button
+				className="border-4 border-cyan-600 px-4 hover:bg-cyan-600 rounded m-4"
+				onClick={() => setshowMathQuestions(!showMathQuestions)}
+			>
+				{!showMathQuestions ? "SOMMEN Maken!" : "Aantal veranderen"}
+			</button>
 		</>
 	);
 }

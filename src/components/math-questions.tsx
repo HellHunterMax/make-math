@@ -22,18 +22,7 @@ export default function MathQuestions(props: MathType) {
 	const generateMathQuestions = () => {
 		const questions = [];
 		for (let i = 0; i < props.numberOfMaths; i++) {
-			const answer = mathGenerator.generateAnswer();
-			const firstNumber = mathGenerator.generateFirstNumber(answer);
-			const secondNumber = mathGenerator.generateSecondNumber(
-				answer,
-				firstNumber
-			);
-			questions.push({
-				firstNumber,
-				secondNumber,
-				operator: props.operator,
-				answer,
-			});
+			questions.push(mathGenerator.generateMathEquation());
 		}
 		return questions;
 	};

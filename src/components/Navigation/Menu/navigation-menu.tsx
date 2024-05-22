@@ -34,7 +34,7 @@ export default function NavigationMenu() {
 				className={`absolute md:hidden left-0 top-0 z-50 p-4 cursor-pointer`}
 				onClick={() => setMenuOpen(!menuOpen)}
 			>
-				<div className="relative">
+				<div className="relative text-gray-700">
 					<svg
 						className={`absolute h-10 w-10 transition-all duration-100 ease-in ${
 							menuOpen

@@ -1,4 +1,4 @@
-import { MathQuestionProps } from "@/components/math-questions";
+import { MathQuestionProps } from "@/components/shared/Components/math-questions";
 import { Operator } from "@/enums/operator";
 
 const useMath = (operator: Operator, maxAnswer: number) => {

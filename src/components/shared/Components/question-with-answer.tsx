@@ -13,6 +13,13 @@ export type QuestionWithNumberInputProps = {
 export default function QuestionWithNumberInput(
 	props: QuestionWithNumberInputProps
 ) {
+	function onChangeInput(value: string) {
+		if (value) {
+			props.setAnswer(parseInt(value));
+		} else {
+			props.setAnswer(0);
+		}
+	}
 	return (
 		<div className="p-4 flex flex-col bg-white shadow-md rounded-xl bg-clip-border w-full">
 			<p>{props.question}</p>
@@ -22,7 +29,7 @@ export default function QuestionWithNumberInput(
 				value={props.initial}
 				max={props.max}
 				min={props.min}
-				onChange={(v) => props.setAnswer(parseInt(v.target.value))}
+				onChange={(v) => onChangeInput(v.target.value)}
 			/>
 		</div>
 	);

@@ -1,44 +1,61 @@
 "use client";
 
 import { useState } from "react";
-import QuestionWithNumberInput from "./question-with-answer";
-import MathQuestions from "./math-questions";
+import QuestionWithNumberInput from "../../shared/Components/question-with-answer";
+import MathQuestions from "../../shared/Components/math-questions";
 import { Operator } from "@/enums/operator";
-import FilledButton from "./shared/filled-Button";
-import OperatorChoice from "./operator-choice";
+import OperatorChoice from "../../shared/Components/operator-choice";
+import { OutlinedButton } from "@/components/shared/Buttons/buttons";
 
-export default function Main() {
-	const [numberOfMaths, setNumberOfQuestions] = useState(10);
+export default function TrainingMain() {
+	const [mathQuestionCount, setMathQuestionCount] = useState(10);
 	const [maxNumber, setmaxNumber] = useState(10);
 	const [showMathQuestions, setshowMathQuestions] = useState(false);
 	const [operator, setOperator] = useState(Operator.Add);
+	const maxMaxNumber = 1000000;
+	const minMaxNumber = 1;
+	const maxMathQuestionCount = 50;
+	const minMathQuestionCount = 1;
+
+	function isDisabled(): boolean {
+		if (!maxNumber && !mathQuestionCount) {
+			return false;
+		}
+		return !(
+			maxNumber > minMaxNumber - 1 &&
+			maxNumber < maxMaxNumber + 1 &&
+			mathQuestionCount > minMathQuestionCount - 1 &&
+			mathQuestionCount < maxMathQuestionCount + 1
+		);
+	}
+
 	return (
 		<>
 			{showMathQuestions && (
-				<FilledButton
+				<OutlinedButton
 					buttonText={
 						!showMathQuestions
 							? "SOMMEN Maken!"
 							: "Aantal veranderen"
 					}
 					onClick={() => setshowMathQuestions(!showMathQuestions)}
-				></FilledButton>
+				></OutlinedButton>
 			)}
 			{!showMathQuestions && (
 				<div className="flex flex-col min-w-max gap-4">
 					<QuestionWithNumberInput
 						question="Hoeveel sommen"
-						setAnswer={setNumberOfQuestions}
-						initial={numberOfMaths}
-						max={20}
-						min={1}
+						setAnswer={setMathQuestionCount}
+						initial={mathQuestionCount}
+						max={maxMathQuestionCount}
+						min={minMathQuestionCount}
 					/>
 					<QuestionWithNumberInput
 						question="Hoogste nummer"
 						setAnswer={setmaxNumber}
 						initial={maxNumber}
-						max={100}
-						min={0}
+						max={maxMaxNumber}
+						min={minMaxNumber}
 					/>
 					<OperatorChoice
 						chosenOperator={operator}
@@ -49,16 +66,17 @@ export default function Main() {
 			{showMathQuestions && (
 				<MathQuestions
 					maxNumber={maxNumber}
-					numberOfMaths={numberOfMaths}
+					numberOfMaths={mathQuestionCount}
 					operator={operator}
 				></MathQuestions>
 			)}
-			<FilledButton
+			<OutlinedButton
 				buttonText={
 					!showMathQuestions ? "SOMMEN Maken!" : "Aantal veranderen"
 				}
+				disabled={isDisabled()}
 				onClick={() => setshowMathQuestions(!showMathQuestions)}
-			></FilledButton>
+			></OutlinedButton>
 		</>
 	);
 }

@@ -7,6 +7,7 @@ export default function NavigationMenu() {
 	const menuItems = [
 		{ title: "Home", url: "/" },
 		{ title: "Sommen Maken", url: "/exercises" },
+		{ title: "Wedstrijd", url: "/contest" },
 	];
 	const [menuOpen, setMenuOpen] = useState(false);
 

@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import { MathQuestionProps } from "./math-questions";
+import { mathQuestionProps } from "./math-questions";
 
-export function MathQuestion(props: MathQuestionProps) {
+export function MathQuestion(props: mathQuestionProps) {
 	const [inputAnswer, setInputAnswer] = useState<number | null>(null);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

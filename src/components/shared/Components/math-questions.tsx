@@ -1,23 +1,23 @@
 "use client";
 
 import { MathQuestion } from "./math-question";
-import { Operator } from "@/enums/operator";
+import { operator } from "@/enums/operator";
 import useMath from "@/hooks/useMath";
 
-export type MathQuestionProps = {
+export type mathQuestionProps = {
 	firstNumber: number;
 	secondNumber: number;
-	operator: Operator;
+	operator: operator;
 	answer: number;
 };
 
-export type MathType = {
+export type mathType = {
 	numberOfMaths: number;
 	maxNumber: number;
-	operator: Operator;
+	operator: operator;
 };
 
-export default function MathQuestions(props: MathType) {
+export default function MathQuestions(props: mathType) {
 	const mathGenerator = useMath(props.operator, props.maxNumber);
 	const generateMathQuestions = () => {
 		const questions = [];

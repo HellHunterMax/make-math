@@ -1,19 +1,19 @@
-import { MathQuestionProps } from "@/components/shared/Components/math-questions";
-import { Operator } from "@/enums/operator";
+import { mathQuestionProps } from "@/components/shared/Components/math-questions";
+import { operator } from "@/enums/operator";
 
-const useMath = (operator: Operator, maxAnswer: number) => {
-	const generateMathEquation = (): MathQuestionProps => {
+const useMath = (operator: operator, maxAnswer: number) => {
+	const generateMathEquation = (): mathQuestionProps => {
 		switch (operator) {
-			case Operator.Add:
+			case operator.Add:
 				return generateAddEquation();
-			case Operator.Subtract:
+			case operator.Subtract:
 				return generateSubtractEquation();
 			default:
 				throw new Error("Invalid operator");
 		}
 	};
 
-	const generateAddEquation = (): MathQuestionProps => {
+	const generateAddEquation = (): mathQuestionProps => {
 		const answer = Math.floor(Math.random() * (maxAnswer + 1));
 		const firstNumber = Math.floor(Math.random() * (answer + 1));
 		const secondNumber = answer - firstNumber;
@@ -26,7 +26,7 @@ const useMath = (operator: Operator, maxAnswer: number) => {
 		};
 	};
 
-	const generateSubtractEquation = (): MathQuestionProps => {
+	const generateSubtractEquation = (): mathQuestionProps => {
 		const firstNumber = Math.floor(Math.random() * (maxAnswer + 1));
 		const secondNumber = Math.floor(Math.random() * (firstNumber + 1));
 		const answer = calculate(firstNumber, secondNumber, operator);
@@ -39,11 +39,11 @@ const useMath = (operator: Operator, maxAnswer: number) => {
 		};
 	};
 
-	const calculate = (a: number, b: number, operator: Operator): number => {
+	const calculate = (a: number, b: number, operator: operator): number => {
 		switch (operator) {
-			case Operator.Add:
+			case operator.Add:
 				return a + b;
-			case Operator.Subtract:
+			case operator.Subtract:
 				return a - b;
 			default:
 				throw new Error("Invalid operator");

@@ -1,20 +1,20 @@
-import { Operator } from "@/enums/operator";
+import { operator } from "@/enums/operator";
 import { Dispatch, SetStateAction } from "react";
 
-export type OperatorChoiceProps = {
-	chosenOperator: Operator;
-	setOperator: Dispatch<SetStateAction<Operator>>;
+export type operatorChoiceProps = {
+	chosenOperator: operator;
+	setOperator: Dispatch<SetStateAction<operator>>;
 };
 
 const operators = [
-	{ label: "+ Plus", value: Operator.Add },
-	{ label: "- Min", value: Operator.Subtract },
+	{ label: "+ Plus", value: operator.Add },
+	{ label: "- Min", value: operator.Subtract },
 ];
 
 export default function OperatorChoice({
 	chosenOperator,
 	setOperator,
-}: OperatorChoiceProps) {
+}: operatorChoiceProps) {
 	return (
 		<div className="relative flex flex-col bg-white shadow-md rounded-xl bg-clip-border">
 			<nav className="flex min-w-[240px] flex-col gap-1 p-2 font-sans text-base font-normal text-blue-gray-700">

@@ -2,7 +2,7 @@
 
 import { Dispatch, SetStateAction, useState } from "react";
 
-export type QuestionWithNumberInputProps = {
+export type questionWithNumberInputProps = {
 	question: string;
 	initial: number;
 	setAnswer: Dispatch<SetStateAction<number>>;
@@ -11,7 +11,7 @@ export type QuestionWithNumberInputProps = {
 };
 
 export default function QuestionWithNumberInput(
-	props: QuestionWithNumberInputProps
+	props: questionWithNumberInputProps
 ) {
 	function onChangeInput(value: string) {
 		if (value) {

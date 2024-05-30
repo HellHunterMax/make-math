@@ -4,20 +4,15 @@ import {
 } from "@/components/shared/Buttons/buttons";
 import H4 from "@/components/shared/DefaultHTML/h4";
 import { Dispatch, SetStateAction, useState } from "react";
+import player from "./Models/player";
 
-export type Player = {
-	Id: number;
-	Name: string;
-};
-
-export type SelectContestPlayersMenuProps = {
-	Players: Player[];
-	SetPlayers: Dispatch<SetStateAction<Player[]>>;
-	SetIsContestStarted: Dispatch<SetStateAction<boolean>>;
+export type selectContestPlayersMenuProps = {
+	Players: player[];
+	SetPlayers: Dispatch<SetStateAction<player[]>>;
 };
 
 export default function SelectContestPlayersMenu(
-	props: SelectContestPlayersMenuProps
+	props: selectContestPlayersMenuProps
 ) {
 	const [name, setName] = useState("");
 
@@ -25,16 +20,10 @@ export default function SelectContestPlayersMenu(
 		if (name.trim() !== "" && props.Players.length < 10) {
 			props.SetPlayers([
 				...props.Players,
-				{ Id: props.Players.length, Name: name },
+				{ Id: props.Players.length, Name: name, answers: [] },
 			]);
 
 			setName("");
-		}
-	}
-
-	function onClickStartContest() {
-		if (props.Players.length > 1) {
-			props.SetIsContestStarted(true);
 		}
 	}
 
@@ -77,12 +66,6 @@ export default function SelectContestPlayersMenu(
 							props.Players.length > 9 || name.trim() === ""
 						}
 						onClick={onClickAddPlayer}
-					/>
-
-					<FilledButton
-						buttonText={"START"}
-						disabled={props.Players.length < 2}
-						onClick={onClickStartContest}
 					/>
 				</div>
 			</div>

@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import QuestionWithNumberInput from "./question-with-answer";
-import { operator } from "@/enums/operator";
+import { Operator } from "@/enums/operator";
 import OperatorChoice from "./operator-choice";
 import {
 	maxMathQuestionCount,
@@ -14,8 +14,8 @@ export type mathQuestionTypeSelectorMenuProps = {
 	setMathQuestionCount: Dispatch<SetStateAction<number>>;
 	maxNumber: number;
 	setmaxNumber: Dispatch<SetStateAction<number>>;
-	selectedOperator: operator;
-	setOperator: Dispatch<SetStateAction<operator>>;
+	selectedOperator: Operator;
+	setOperator: Dispatch<SetStateAction<Operator>>;
 };
 
 export default function MathQuestionTypeSelectorMenu(

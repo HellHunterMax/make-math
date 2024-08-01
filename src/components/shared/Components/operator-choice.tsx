@@ -1,14 +1,14 @@
-import { operator } from "@/enums/operator";
+import { Operator } from "@/enums/operator";
 import { Dispatch, SetStateAction } from "react";
 
 export type operatorChoiceProps = {
-	chosenOperator: operator;
-	setOperator: Dispatch<SetStateAction<operator>>;
+	chosenOperator: Operator;
+	setOperator: Dispatch<SetStateAction<Operator>>;
 };
 
 const operators = [
-	{ label: "+ Plus", value: operator.Add },
-	{ label: "- Min", value: operator.Subtract },
+	{ label: "+ Plus", value: Operator.Add },
+	{ label: "- Min", value: Operator.Subtract },
 ];
 
 export default function OperatorChoice({

@@ -3,7 +3,7 @@
 import { SetStateAction, useState } from "react";
 import QuestionWithNumberInput from "../../shared/Components/question-with-answer";
 import MathQuestions from "../../shared/Components/math-questions";
-import { operator } from "@/enums/operator";
+import { Operator } from "@/enums/operator";
 import OperatorChoice from "../../shared/Components/operator-choice";
 import { OutlinedButton } from "@/components/shared/Buttons/buttons";
 import MathQuestionTypeSelectorMenu from "@/components/shared/Components/math-question-type-selector-menu";
@@ -18,7 +18,7 @@ export default function TrainingMain() {
 	const [mathQuestionCount, setMathQuestionCount] = useState(10);
 	const [maxNumber, setmaxNumber] = useState(10);
 	const [showMathQuestions, setshowMathQuestions] = useState(false);
-	const [selectedOperator, setOperator] = useState(operator.Add);
+	const [selectedOperator, setOperator] = useState(Operator.Add);
 
 	function isDisabled(): boolean {
 		if (!maxNumber && !mathQuestionCount) {

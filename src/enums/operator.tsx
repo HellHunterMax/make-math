@@ -1,4 +1,4 @@
-export enum operator {
+export enum Operator {
 	Add = "+",
 	Subtract = "-",
 }

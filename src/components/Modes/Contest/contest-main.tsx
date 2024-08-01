@@ -2,7 +2,7 @@
 import { useState } from "react";
 import SelectContestPlayersMenu from "./select-contest-players-Menu";
 import player from "./Models/player";
-import { operator } from "@/enums/operator";
+import { Operator } from "@/enums/operator";
 import { FilledButton } from "@/components/shared/Buttons/buttons";
 import MathQuestionTypeSelectorMenu from "@/components/shared/Components/math-question-type-selector-menu";
 import {
@@ -11,13 +11,14 @@ import {
 	minMathQuestionCount,
 	minMaxNumber,
 } from "@/constants/website-constants";
+import ContestPage from "./contest-page";
 
 export default function ContestMain() {
 	const [players, setPlayers] = useState<player[]>([]);
 	const [mathQuestionCount, setMathQuestionCount] = useState(10);
 	const [maxNumber, setmaxNumber] = useState(10);
 	const [showMathQuestions, setshowMathQuestions] = useState(false);
-	const [selectedOperator, setOperator] = useState(operator.Add);
+	const [selectedOperator, setOperator] = useState(Operator.Add);
 
 	const [arePlayersSelected, setArePlayersSelected] = useState(false);
 	const [isContestStarted, setIsContestStarted] = useState(false);
@@ -79,7 +80,14 @@ export default function ContestMain() {
 					/>
 				</div>
 			)}
-			{isContestStarted && <p>contest</p>}
+			{isContestStarted && (
+				<ContestPage
+					players={players}
+					numberOfQuestions={mathQuestionCount}
+					maxNumber={maxNumber}
+					selectedOperator={selectedOperator}
+				/>
+			)}
 		</>
 	);
 }

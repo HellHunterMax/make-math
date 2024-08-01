@@ -1,20 +1,13 @@
 "use client";
 
 import { MathQuestion } from "./math-question";
-import { operator } from "@/enums/operator";
+import { Operator } from "@/enums/operator";
 import useMath from "@/hooks/useMath";
-
-export type mathQuestionProps = {
-	firstNumber: number;
-	secondNumber: number;
-	operator: operator;
-	answer: number;
-};
 
 export type mathType = {
 	numberOfMaths: number;
 	maxNumber: number;
-	operator: operator;
+	operator: Operator;
 };
 
 export default function MathQuestions(props: mathType) {

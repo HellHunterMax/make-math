@@ -1,12 +1,12 @@
-import { mathQuestionProps } from "@/components/shared/Components/math-questions";
-import { operator } from "@/enums/operator";
+import mathQuestionProps from "@/components/shared/models/math-question-props";
+import { Operator } from "@/enums/operator";
 
-const useMath = (operator: operator, maxAnswer: number) => {
+const useMath = (operator: Operator, maxAnswer: number) => {
 	const generateMathEquation = (): mathQuestionProps => {
 		switch (operator) {
-			case operator.Add:
+			case Operator.Add:
 				return generateAddEquation();
-			case operator.Subtract:
+			case Operator.Subtract:
 				return generateSubtractEquation();
 			default:
 				throw new Error("Invalid operator");
@@ -39,14 +39,14 @@ const useMath = (operator: operator, maxAnswer: number) => {
 		};
 	};
 
-	const calculate = (a: number, b: number, operator: operator): number => {
+	const calculate = (a: number, b: number, operator: Operator): number => {
 		switch (operator) {
-			case operator.Add:
+			case Operator.Add:
 				return a + b;
-			case operator.Subtract:
+			case Operator.Subtract:
 				return a - b;
 			default:
-				throw new Error("Invalid operator");
+				throw new Error("Invalid Operator");
 		}
 	};
 

@@ -56,8 +56,11 @@ export default function SelectContestPlayersMenu(
 				<H4>Spelers</H4>
 				<ol className="list-disc">
 					{props.Players.map((player) => (
-						<div className="flex flex-row items-center justify-center gap-4 m-4">
-							<li key={player.Id}>{player.Name}</li>
+						<div
+							key={player.Id}
+							className="flex flex-row items-center justify-center gap-4 m-4"
+						>
+							<li>{player.Name}</li>
 							<OutlinedButton
 								buttonText={"Verwijder"}
 								onClick={() => onClickRemovePlayer(player.Id)}

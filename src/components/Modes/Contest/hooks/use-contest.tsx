@@ -30,23 +30,6 @@ const useContest = (players: player[], questions: mathQuestionProps[]) => {
 		}
 	}
 
-	useEffect(() => {}, [players[0].answers.length]);
-
-	useEffect(() => {
-		if (isContestFinished) {
-			const scores = getResult();
-			setPlayerScores(scores);
-		}
-	}, [isContestFinished]);
-
-	function setAnswer(playerId: number, questionId: number, answer: number) {
-		const player = players.find((player) => player.Id === playerId);
-		if (player) {
-			player.answers.push({ Id: questionId, answer });
-			SetNextQuestionOrPlayer();
-		}
-	}
-
 	const getResult = (): playerScore[] => {
 		const scores = players.map((player) => {
 			let score = 0;
@@ -63,6 +46,21 @@ const useContest = (players: player[], questions: mathQuestionProps[]) => {
 		scores.forEach((s) => (s.winner = s.score === maxScore));
 		return scores;
 	};
+
+	useEffect(() => {
+		if (isContestFinished) {
+			const scores = getResult();
+			setPlayerScores(scores);
+		}
+	}, [isContestFinished]);
+
+	function setAnswer(playerId: number, questionId: number, answer: number) {
+		const player = players.find((player) => player.Id === playerId);
+		if (player) {
+			player.answers.push({ Id: questionId, answer });
+			SetNextQuestionOrPlayer();
+		}
+	}
 
 	return {
 		activePlayer: players.find((x) => x.Id == activePlayerId)!,

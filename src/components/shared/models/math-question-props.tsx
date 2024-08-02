@@ -1,6 +1,7 @@
 import { Operator } from "@/enums/operator";
 
 type mathQuestionProps = {
+	id: number;
 	firstNumber: number;
 	secondNumber: number;
 	operator: Operator;

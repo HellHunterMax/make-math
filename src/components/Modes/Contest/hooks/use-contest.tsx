@@ -1,11 +1,6 @@
 import mathQuestionProps from "@/components/shared/models/math-question-props";
-import { Operator } from "@/enums/operator";
 import player from "../Models/player";
 import { useEffect, useState } from "react";
-
-export type playerAnswers = {
-	[playerId: number]: number[];
-};
 
 export type playerScore = {
 	playerId: number;
@@ -16,7 +11,6 @@ export type playerScore = {
 const useContest = (players: player[], questions: mathQuestionProps[]) => {
 	const [activePlayerId, setActivePlayerId] = useState(players[0].Id);
 	const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
-	const [questionAnswers, setQuestionAnswers] = useState<playerAnswers>({});
 	const [isContestFinished, setIsContestFinished] = useState(false);
 	const [playerScores, setPlayerScores] = useState<playerScore[]>([]);
 
@@ -37,44 +31,42 @@ const useContest = (players: player[], questions: mathQuestionProps[]) => {
 	}
 
 	useEffect(() => {
+		console.log(players);
+	}, [players[0].answers.length]);
+
+	useEffect(() => {
 		if (isContestFinished) {
 			const scores = getResult();
+			console.log(`setting player scores.`, scores);
+
 			setPlayerScores(scores);
 		}
 	}, [isContestFinished]);
 
-	function setAnswer(playerId: number, answer: number) {
-		setQuestionAnswers((prevAnswers) => {
-			const playerAnswers = prevAnswers[playerId] || [];
-			const updatedAnswers = [...playerAnswers];
-			updatedAnswers[activeQuestionIndex] = answer;
-			return {
-				...prevAnswers,
-				[playerId]: updatedAnswers,
-			};
-		});
-		SetNextQuestionOrPlayer();
+	function setAnswer(playerId: number, questionId: number, answer: number) {
+		// Update the player's answer for the current question
+		const player = players.find((player) => player.Id === playerId);
+		if (player) {
+			player.answers.push({ Id: questionId, answer });
+			SetNextQuestionOrPlayer();
+		}
 	}
 
 	const getResult = (): playerScore[] => {
+		// Calculate results and determine winners
 		const scores = players.map((player) => {
-			const playerAnswers = questionAnswers[player.Id] || [];
-			const correctCount = playerAnswers.reduce(
-				(count, answer, index) => {
-					return count + (answer === questions[index].answer ? 1 : 0);
-				},
-				0
-			);
-			return { playerId: player.Id, winner: false, score: correctCount };
+			let score = 0;
+			player.answers.forEach((answer) => {
+				const question = questions.find((q) => q.id === answer.Id);
+				if (question && question.answer === answer.answer) {
+					score++;
+				}
+			});
+			return { playerId: player.Id, winner: false, score: score };
 		});
 
-		const maxScore = Math.max(...scores.map((score) => score.score));
-		scores.forEach((score) => {
-			if (score.score === maxScore) {
-				score.winner = true;
-			}
-		});
-
+		const maxScore = Math.max(...scores.map((s) => s.score));
+		scores.forEach((s) => (s.winner = s.score === maxScore));
 		return scores;
 	};
 

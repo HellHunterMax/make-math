@@ -1,9 +1,5 @@
-import Main from "@/components/main";
+import TrainingMain from "@/components/Modes/Training/training-main";
 
 export default function Home() {
-	return (
-		<>
-			<Main />;
-		</>
-	);
+	return <TrainingMain />;
 }

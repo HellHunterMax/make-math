@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
 import NavigationMenu from "@/components/Navigation/Menu/navigation-menu";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,7 +21,7 @@ export default function RootLayout({
 				className={`${inter.className} h-full w-full bg-slate-300 text-black`}
 			>
 				<NavigationMenu />
-				<div className="flex min-h-full min-w-full flex-col items-center absolute p-4 md:pl-60 pt-12">
+				<div className="flex min-h-full min-w-full flex-col items-center absolute p-4 md:pl-60 pt-14">
 					{children}
 				</div>
 			</body>

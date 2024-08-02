@@ -4,25 +4,18 @@ import { MathQuestion } from "./math-question";
 import { Operator } from "@/enums/operator";
 import useMath from "@/hooks/useMath";
 
-export type MathQuestionProps = {
-	firstNumber: number;
-	secondNumber: number;
-	operator: Operator;
-	answer: number;
-};
-
-export type MathType = {
+export type mathType = {
 	numberOfMaths: number;
 	maxNumber: number;
 	operator: Operator;
 };
 
-export default function MathQuestions(props: MathType) {
+export default function MathQuestions(props: mathType) {
 	const mathGenerator = useMath(props.operator, props.maxNumber);
 	const generateMathQuestions = () => {
 		const questions = [];
-		for (let i = 0; i < props.numberOfMaths; i++) {
-			questions.push(mathGenerator.generateMathEquation());
+		for (let i = 1; i < props.numberOfMaths + 1; i++) {
+			questions.push(mathGenerator.generateMathEquation(i));
 		}
 		return questions;
 	};

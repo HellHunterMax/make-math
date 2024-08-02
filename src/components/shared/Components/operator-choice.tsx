@@ -1,7 +1,7 @@
 import { Operator } from "@/enums/operator";
 import { Dispatch, SetStateAction } from "react";
 
-export type OperatorChoiceProps = {
+export type operatorChoiceProps = {
 	chosenOperator: Operator;
 	setOperator: Dispatch<SetStateAction<Operator>>;
 };
@@ -14,7 +14,7 @@ const operators = [
 export default function OperatorChoice({
 	chosenOperator,
 	setOperator,
-}: OperatorChoiceProps) {
+}: operatorChoiceProps) {
 	return (
 		<div className="relative flex flex-col bg-white shadow-md rounded-xl bg-clip-border">
 			<nav className="flex min-w-[240px] flex-col gap-1 p-2 font-sans text-base font-normal text-blue-gray-700">

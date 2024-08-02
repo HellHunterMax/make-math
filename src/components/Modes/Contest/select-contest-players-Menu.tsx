@@ -20,10 +20,20 @@ export default function SelectContestPlayersMenu(
 		if (name.trim() !== "" && props.Players.length < 10) {
 			props.SetPlayers([
 				...props.Players,
-				{ Id: props.Players.length, Name: name, answers: [] },
+				{ Id: props.Players.length + 1, Name: name, answers: [] },
 			]);
 
 			setName("");
+		}
+	}
+
+	function onClickRemovePlayer(id: number) {
+		if (id) {
+			const player = props.Players.find((x) => x.Id === id);
+			if (player) {
+				const updatedPlayers = props.Players.filter((x) => x.Id !== id);
+				props.SetPlayers(updatedPlayers);
+			}
 		}
 	}
 
@@ -46,7 +56,13 @@ export default function SelectContestPlayersMenu(
 				<H4>Spelers</H4>
 				<ol className="list-disc">
 					{props.Players.map((player) => (
-						<li key={player.Id}>{player.Name}</li>
+						<div className="flex flex-row items-center justify-center">
+							<li key={player.Id}>{player.Name}</li>
+							<OutlinedButton
+								buttonText={"Verwijder"}
+								onClick={() => onClickRemovePlayer(player.Id)}
+							/>
+						</div>
 					))}
 				</ol>
 			</div>

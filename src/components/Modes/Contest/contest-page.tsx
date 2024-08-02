@@ -7,12 +7,14 @@ import ContestResults from "./contest-results";
 import { MathQuestion } from "@/components/shared/Components/math-question";
 import H4 from "@/components/shared/DefaultHTML/h4";
 import { useState } from "react";
+import { FilledButton } from "@/components/shared/Buttons/buttons";
 
 export type contestPageProps = {
 	players: player[];
 	numberOfQuestions: number;
 	maxNumber: number;
 	selectedOperator: Operator;
+	resetContest: () => void;
 };
 
 export default function ContestPage({
@@ -20,6 +22,7 @@ export default function ContestPage({
 	numberOfQuestions,
 	maxNumber,
 	selectedOperator,
+	resetContest,
 }: contestPageProps) {
 	var mathGenerator = useMath(selectedOperator, maxNumber);
 	const generateMathQuestions = () => {
@@ -36,10 +39,16 @@ export default function ContestPage({
 	return (
 		<>
 			{contest.isContestFinished && (
-				<ContestResults
-					players={players}
-					playerScores={contest.playerScores}
-				/>
+				<div className="flex flex-1 flex-col gap-4">
+					<ContestResults
+						players={players}
+						playerScores={contest.playerScores}
+					/>
+					<FilledButton
+						buttonText={"Opnieuw beginnen"}
+						onClick={resetContest}
+					></FilledButton>
+				</div>
 			)}
 			{!contest.isContestFinished && (
 				<>

@@ -17,11 +17,15 @@ export default function ContestMain() {
 	const [players, setPlayers] = useState<player[]>([]);
 	const [mathQuestionCount, setMathQuestionCount] = useState(10);
 	const [maxNumber, setmaxNumber] = useState(10);
-	const [showMathQuestions, setshowMathQuestions] = useState(false);
 	const [selectedOperator, setOperator] = useState(Operator.Add);
 
 	const [arePlayersSelected, setArePlayersSelected] = useState(false);
 	const [isContestStarted, setIsContestStarted] = useState(false);
+
+	function resetContest() {
+		setArePlayersSelected(false);
+		setIsContestStarted(false);
+	}
 
 	function isStartDisabled(): boolean {
 		if (!maxNumber && !mathQuestionCount) {
@@ -86,6 +90,7 @@ export default function ContestMain() {
 					numberOfQuestions={mathQuestionCount}
 					maxNumber={maxNumber}
 					selectedOperator={selectedOperator}
+					resetContest={resetContest}
 				/>
 			)}
 		</>

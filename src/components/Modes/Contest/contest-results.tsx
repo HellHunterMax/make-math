@@ -14,23 +14,33 @@ export default function ContestResults({
 		playerScores.find((score) => score.playerId === playerId);
 
 	return (
-		<ul>
+		<ul className="">
 			{players.map((player) => {
 				const score = getPlayerScore(player.Id);
 				return (
-					<li key={player.Id} className="flex items-center">
-						<span>{player.Name}: </span>
+					<>
 						{score && (
-							<>
-								<span>Score: {score.score}</span>
+							<div className="flex flex-row p-4">
+								<li
+									key={player.Id}
+									className="flex items-center flex-col"
+								>
+									<span className="font-bold">
+										{player.Name}:{" "}
+									</span>
+
+									<>
+										<span>Score: {score.score}</span>
+									</>
+								</li>
 								{score.winner && (
 									<span className="font-bold pl-2 min-w-20 text-green-600">
 										WINNER
 									</span>
 								)}
-							</>
+							</div>
 						)}
-					</li>
+					</>
 				);
 			})}
 		</ul>

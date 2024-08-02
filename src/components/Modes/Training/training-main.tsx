@@ -33,7 +33,7 @@ export default function TrainingMain() {
 	}
 
 	return (
-		<>
+		<div className="flex flex-col gap-4">
 			{showMathQuestions && (
 				<OutlinedButton
 					buttonText={
@@ -42,7 +42,7 @@ export default function TrainingMain() {
 							: "Aantal veranderen"
 					}
 					onClick={() => setshowMathQuestions(!showMathQuestions)}
-				></OutlinedButton>
+				/>
 			)}
 			{!showMathQuestions && (
 				<MathQuestionTypeSelectorMenu
@@ -59,7 +59,7 @@ export default function TrainingMain() {
 					maxNumber={maxNumber}
 					numberOfMaths={mathQuestionCount}
 					operator={selectedOperator}
-				></MathQuestions>
+				/>
 			)}
 			<OutlinedButton
 				buttonText={
@@ -67,7 +67,7 @@ export default function TrainingMain() {
 				}
 				disabled={isDisabled()}
 				onClick={() => setshowMathQuestions(!showMathQuestions)}
-			></OutlinedButton>
-		</>
+			/>
+		</div>
 	);
 }

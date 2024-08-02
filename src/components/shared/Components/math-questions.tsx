@@ -14,8 +14,8 @@ export default function MathQuestions(props: mathType) {
 	const mathGenerator = useMath(props.operator, props.maxNumber);
 	const generateMathQuestions = () => {
 		const questions = [];
-		for (let i = 0; i < props.numberOfMaths; i++) {
-			questions.push(mathGenerator.generateMathEquation());
+		for (let i = 1; i < props.numberOfMaths + 1; i++) {
+			questions.push(mathGenerator.generateMathEquation(i));
 		}
 		return questions;
 	};

@@ -56,7 +56,7 @@ export default function SelectContestPlayersMenu(
 				<H4>Spelers</H4>
 				<ol className="list-disc">
 					{props.Players.map((player) => (
-						<div className="flex flex-row items-center justify-center">
+						<div className="flex flex-row items-center justify-center gap-4 m-4">
 							<li key={player.Id}>{player.Name}</li>
 							<OutlinedButton
 								buttonText={"Verwijder"}
@@ -66,7 +66,7 @@ export default function SelectContestPlayersMenu(
 					))}
 				</ol>
 			</div>
-			<div>
+			<div className="flex flex-col gap-4">
 				<input
 					className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
 					type="text"
@@ -75,15 +75,11 @@ export default function SelectContestPlayersMenu(
 					onChange={(v) => setName(v.target.value)}
 					onKeyDown={handleKeyDown}
 				/>
-				<div className="flex flex-row min-w-max space-2 p-2">
-					<OutlinedButton
-						buttonText={"+ Voeg speler toe"}
-						disabled={
-							props.Players.length > 9 || name.trim() === ""
-						}
-						onClick={onClickAddPlayer}
-					/>
-				</div>
+				<OutlinedButton
+					buttonText={"+ Voeg speler toe"}
+					disabled={props.Players.length > 9 || name.trim() === ""}
+					onClick={onClickAddPlayer}
+				/>
 			</div>
 		</div>
 	);

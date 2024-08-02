@@ -27,7 +27,7 @@ export default function ContestPage({
 	var mathGenerator = useMath(selectedOperator, maxNumber);
 	const generateMathQuestions = () => {
 		const questions = [];
-		for (let i = 0; i < numberOfQuestions; i++) {
+		for (let i = 1; i < numberOfQuestions + 1; i++) {
 			questions.push(mathGenerator.generateMathEquation(i));
 		}
 		return questions;
@@ -51,24 +51,26 @@ export default function ContestPage({
 				</div>
 			)}
 			{!contest.isContestFinished && (
-				<>
+				<div className="flex flex-col justify-center items-center">
 					<H4>{contest.activePlayer.Name}</H4>
-					<MathQuestion
-						id={contest.activeQuestion.id}
-						firstNumber={contest.activeQuestion.firstNumber}
-						secondNumber={contest.activeQuestion.secondNumber}
-						answer={contest.activeQuestion.answer}
-						setResult={(result) =>
-							contest.SetAnswer(
-								contest.activePlayer.Id,
-								contest.activeQuestion.id,
-								result
-							)
-						}
-						operator={contest.activeQuestion.operator}
-						hideResult
-					/>
-				</>
+					<div className="flex flex-col justify-center items-center">
+						<MathQuestion
+							id={contest.activeQuestion.id}
+							firstNumber={contest.activeQuestion.firstNumber}
+							secondNumber={contest.activeQuestion.secondNumber}
+							answer={contest.activeQuestion.answer}
+							setResult={(result) =>
+								contest.SetAnswer(
+									contest.activePlayer.Id,
+									contest.activeQuestion.id,
+									result
+								)
+							}
+							operator={contest.activeQuestion.operator}
+							hideResult
+						/>
+					</div>
+				</div>
 			)}
 		</>
 	);

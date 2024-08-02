@@ -6,7 +6,7 @@ export type buttonProps = {
 
 const DisabledState = "disabled:opacity-30 disabled:cursor-not-allowed";
 const styles =
-	"border-4 leading-none m-4 px-4 py-2 rounded flex justify-center items-center h-";
+	"border-4 leading-none px-4 py-2 rounded flex justify-center items-center h-";
 const transition = "transition-all";
 
 export function FilledButton({ buttonText, onClick, disabled }: buttonProps) {

@@ -23,6 +23,9 @@ export default function ContestMain() {
 	const [isContestStarted, setIsContestStarted] = useState(false);
 
 	function resetContest() {
+		players.forEach((player) => {
+			player.answers = [];
+		});
 		setArePlayersSelected(false);
 		setIsContestStarted(false);
 	}
@@ -52,14 +55,13 @@ export default function ContestMain() {
 	}
 
 	return (
-		<>
+		<div className="flex flex-col gap-4">
 			{!arePlayersSelected && !isContestStarted && (
-				<div className="flex flex-col">
+				<div className="flex flex-col gap-4">
 					<SelectContestPlayersMenu
 						Players={players}
 						SetPlayers={setPlayers}
 					/>
-
 					<FilledButton
 						buttonText={"Klaar"}
 						disabled={players.length < 2}
@@ -68,7 +70,7 @@ export default function ContestMain() {
 				</div>
 			)}
 			{arePlayersSelected && !isContestStarted && (
-				<div className="flex flex-col">
+				<div className="flex flex-col gap-4">
 					<MathQuestionTypeSelectorMenu
 						mathQuestionCount={mathQuestionCount}
 						setMathQuestionCount={setMathQuestionCount}
@@ -93,6 +95,6 @@ export default function ContestMain() {
 					resetContest={resetContest}
 				/>
 			)}
-		</>
+		</div>
 	);
 }

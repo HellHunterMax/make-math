@@ -4,6 +4,7 @@ import mathQuestionProps from "../models/math-question-props";
 import { OutlinedButton } from "../Buttons/buttons";
 
 export function MathQuestion({
+	id,
 	firstNumber,
 	secondNumber,
 	operator,
@@ -16,6 +17,14 @@ export function MathQuestion({
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setInputAnswer(parseInt(e.target.value));
 	};
+
+	function handleSetResult() {
+		if (setResult) {
+			setResult(inputAnswer ?? 0);
+			setInputAnswer(null);
+			document.getElementById(`input-${id}`)?.focus();
+		}
+	}
 
 	function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
 		if (event.key === "Enter") {
@@ -31,10 +40,7 @@ export function MathQuestion({
 					numberInputs[index + 1].focus();
 				}
 			} else {
-				if (setResult) {
-					setResult(inputAnswer ?? 0);
-					setInputAnswer(null);
-				}
+				handleSetResult();
 			}
 		}
 	}
@@ -45,6 +51,7 @@ export function MathQuestion({
 				{firstNumber} {operator} {secondNumber} =
 			</p>
 			<input
+				id={`input-${id}`}
 				className="max-w-24"
 				type="number"
 				value={inputAnswer ?? ""}
@@ -68,11 +75,9 @@ export function MathQuestion({
 			{hideResult && (
 				<div className="mx-4">
 					<OutlinedButton
-						buttonText={"Ingevuld"}
+						buttonText={"Ok"}
 						onClick={() => {
-							if (setResult) {
-								setResult(inputAnswer ?? 0);
-							}
+							handleSetResult();
 						}}
 					/>
 				</div>

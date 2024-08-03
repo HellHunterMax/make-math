@@ -4,6 +4,7 @@ import mathQuestionProps from "../models/math-question-props";
 import { OutlinedButton } from "../Buttons/buttons";
 
 export function MathQuestion({
+	id,
 	firstNumber,
 	secondNumber,
 	operator,
@@ -21,6 +22,7 @@ export function MathQuestion({
 		if (setResult) {
 			setResult(inputAnswer ?? 0);
 			setInputAnswer(null);
+			document.getElementById(`input-${id}`)?.focus();
 		}
 	}
 
@@ -49,6 +51,7 @@ export function MathQuestion({
 				{firstNumber} {operator} {secondNumber} =
 			</p>
 			<input
+				id={`input-${id}`}
 				className="max-w-24"
 				type="number"
 				value={inputAnswer ?? ""}

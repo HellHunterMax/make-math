@@ -17,6 +17,13 @@ export function MathQuestion({
 		setInputAnswer(parseInt(e.target.value));
 	};
 
+	function handleSetResult() {
+		if (setResult) {
+			setResult(inputAnswer ?? 0);
+			setInputAnswer(null);
+		}
+	}
+
 	function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
 		if (event.key === "Enter") {
 			if (!hideResult) {
@@ -31,10 +38,7 @@ export function MathQuestion({
 					numberInputs[index + 1].focus();
 				}
 			} else {
-				if (setResult) {
-					setResult(inputAnswer ?? 0);
-					setInputAnswer(null);
-				}
+				handleSetResult();
 			}
 		}
 	}
@@ -68,11 +72,9 @@ export function MathQuestion({
 			{hideResult && (
 				<div className="mx-4">
 					<OutlinedButton
-						buttonText={"Ingevuld"}
+						buttonText={"Ok"}
 						onClick={() => {
-							if (setResult) {
-								setResult(inputAnswer ?? 0);
-							}
+							handleSetResult();
 						}}
 					/>
 				</div>

@@ -1,7 +1,7 @@
 import { OutlinedButton } from "@/components/shared/Buttons/buttons";
 import H4 from "@/components/shared/DefaultHTML/h4";
 import { Dispatch, SetStateAction, useState } from "react";
-import player from "./Models/player";
+import { player } from "./Models/player";
 import { v7 as uuidv7 } from "uuid";
 
 export type selectContestPlayersMenuProps = {

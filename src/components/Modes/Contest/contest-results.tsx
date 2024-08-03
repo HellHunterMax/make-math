@@ -1,4 +1,4 @@
-import player from "./Models/player";
+import { player } from "./Models/player";
 import { playerScore } from "./hooks/use-contest";
 
 type contestResultsProps = {
@@ -10,7 +10,7 @@ export default function ContestResults({
 	players,
 	playerScores,
 }: contestResultsProps) {
-	const getPlayerScore = (playerId: number): playerScore | undefined =>
+	const getPlayerScore = (playerId: string): playerScore | undefined =>
 		playerScores.find((score) => score.playerId === playerId);
 
 	return (

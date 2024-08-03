@@ -1,10 +1,8 @@
 "use client";
 
-import { SetStateAction, useState } from "react";
-import QuestionWithNumberInput from "../../shared/Components/question-with-answer";
+import { useState } from "react";
 import MathQuestions from "../../shared/Components/math-questions";
 import { Operator } from "@/enums/operator";
-import OperatorChoice from "../../shared/Components/operator-choice";
 import { OutlinedButton } from "@/components/shared/Buttons/buttons";
 import MathQuestionTypeSelectorMenu from "@/components/shared/Components/math-question-type-selector-menu";
 import {

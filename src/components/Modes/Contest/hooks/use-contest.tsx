@@ -1,9 +1,9 @@
 import mathQuestionProps from "@/components/shared/models/math-question-props";
-import player from "../Models/player";
+import { player } from "../Models/player";
 import { useEffect, useState } from "react";
 
 export type playerScore = {
-	playerId: number;
+	playerId: string;
 	winner: boolean;
 	score: number;
 };
@@ -54,7 +54,7 @@ const useContest = (players: player[], questions: mathQuestionProps[]) => {
 		}
 	}, [isContestFinished]);
 
-	function setAnswer(playerId: number, questionId: number, answer: number) {
+	function setAnswer(playerId: string, questionId: number, answer: number) {
 		const player = players.find((player) => player.Id === playerId);
 		if (player) {
 			player.answers.push({ Id: questionId, answer });

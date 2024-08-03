@@ -1,10 +1,8 @@
-import {
-	FilledButton,
-	OutlinedButton,
-} from "@/components/shared/Buttons/buttons";
+import { OutlinedButton } from "@/components/shared/Buttons/buttons";
 import H4 from "@/components/shared/DefaultHTML/h4";
 import { Dispatch, SetStateAction, useState } from "react";
-import player from "./Models/player";
+import { player } from "./Models/player";
+import { v7 as uuidv7 } from "uuid";
 
 export type selectContestPlayersMenuProps = {
 	Players: player[];
@@ -20,14 +18,14 @@ export default function SelectContestPlayersMenu(
 		if (name.trim() !== "" && props.Players.length < 10) {
 			props.SetPlayers([
 				...props.Players,
-				{ Id: props.Players.length + 1, Name: name, answers: [] },
+				{ Id: uuidv7(), Name: name, answers: [] },
 			]);
 
 			setName("");
 		}
 	}
 
-	function onClickRemovePlayer(id: number) {
+	function onClickRemovePlayer(id: string) {
 		if (id) {
 			const player = props.Players.find((x) => x.Id === id);
 			if (player) {

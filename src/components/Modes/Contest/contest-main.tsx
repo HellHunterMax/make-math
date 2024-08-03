@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import SelectContestPlayersMenu from "./select-contest-players-Menu";
-import player from "./Models/player";
+import { player } from "./Models/player";
 import { Operator } from "@/enums/operator";
 import { FilledButton } from "@/components/shared/Buttons/buttons";
 import MathQuestionTypeSelectorMenu from "@/components/shared/Components/math-question-type-selector-menu";

@@ -1,6 +1,6 @@
 "use client";
 import { Operator } from "@/enums/operator";
-import player from "./Models/player";
+import { player } from "./Models/player";
 import useMath from "@/hooks/useMath";
 import useContest from "./hooks/use-contest";
 import ContestResults from "./contest-results";
@@ -24,7 +24,7 @@ export default function ContestPage({
 	selectedOperator,
 	resetContest,
 }: contestPageProps) {
-	var mathGenerator = useMath(selectedOperator, maxNumber);
+	const mathGenerator = useMath(selectedOperator, maxNumber);
 	const generateMathQuestions = () => {
 		const questions = [];
 		for (let i = 1; i < numberOfQuestions + 1; i++) {
@@ -34,7 +34,7 @@ export default function ContestPage({
 	};
 	const [questions] = useState(generateMathQuestions());
 
-	var contest = useContest(players, questions);
+	const contest = useContest(players, questions);
 
 	return (
 		<>

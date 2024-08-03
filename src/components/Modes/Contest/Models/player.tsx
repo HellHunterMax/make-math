@@ -1,5 +1,5 @@
 export type player = {
-	Id: number;
+	Id: string;
 	Name: string;
 	answers: mathAnswer[];
 };

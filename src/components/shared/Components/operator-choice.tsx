@@ -9,6 +9,7 @@ export type operatorChoiceProps = {
 const operators = [
 	{ label: "+ Plus", value: Operator.Add },
 	{ label: "- Min", value: Operator.Subtract },
+	{ label: "x Keer", value: Operator.Multiply },
 ];
 
 export default function OperatorChoice({

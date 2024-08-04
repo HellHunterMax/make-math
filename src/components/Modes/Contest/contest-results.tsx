@@ -18,13 +18,10 @@ export default function ContestResults({
 			{players.map((player) => {
 				const score = getPlayerScore(player.Id);
 				return (
-					<>
+					<div key={player.Id}>
 						{score && (
 							<div className="flex flex-row p-4">
-								<li
-									key={player.Id}
-									className="flex items-center flex-col"
-								>
+								<li className="flex items-center flex-col">
 									<span className="font-bold">
 										{player.Name}:{" "}
 									</span>
@@ -40,7 +37,7 @@ export default function ContestResults({
 								)}
 							</div>
 						)}
-					</>
+					</div>
 				);
 			})}
 		</ul>

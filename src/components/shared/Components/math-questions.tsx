@@ -3,6 +3,7 @@
 import { MathQuestion } from "./math-question";
 import { Operator } from "@/enums/operator";
 import useMath from "@/hooks/useMath";
+import { useState } from "react";
 
 export type mathType = {
 	numberOfMaths: number;
@@ -20,7 +21,7 @@ export default function MathQuestions(props: mathType) {
 		return questions;
 	};
 
-	const questions = generateMathQuestions();
+	const [questions] = useState(generateMathQuestions());
 
 	return (
 		<div className="flex flex-col p-4">

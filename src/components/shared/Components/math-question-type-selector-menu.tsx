@@ -31,7 +31,11 @@ export default function MathQuestionTypeSelectorMenu(
 				min={minMathQuestionCount}
 			/>
 			<QuestionWithNumberInput
-				question="Hoogste nummer"
+				question={
+					props.selectedOperator === Operator.Multiply
+						? "Hoogste tafel"
+						: "Hoogste antwoord"
+				}
 				setAnswer={props.setmaxNumber}
 				initial={props.maxNumber}
 				max={maxMaxNumber}

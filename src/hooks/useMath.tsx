@@ -8,6 +8,8 @@ const useMath = (operator: Operator, maxAnswer: number) => {
 				return generateAddEquation(id);
 			case Operator.Subtract:
 				return generateSubtractEquation(id);
+			case Operator.Multiply:
+				return generateMultiplyEquation(id);
 			default:
 				throw new Error("Invalid operator");
 		}
@@ -41,12 +43,28 @@ const useMath = (operator: Operator, maxAnswer: number) => {
 		};
 	};
 
+	const generateMultiplyEquation = (id: number): mathQuestionProps => {
+		const firstNumber = Math.floor(Math.random() * maxAnswer) + 1;
+		const secondNumber = Math.floor(Math.random() * 10) + 1;
+		const answer = firstNumber * secondNumber;
+
+		return {
+			id,
+			firstNumber,
+			secondNumber,
+			operator,
+			answer,
+		};
+	};
+
 	const calculate = (a: number, b: number, operator: Operator): number => {
 		switch (operator) {
 			case Operator.Add:
 				return a + b;
 			case Operator.Subtract:
 				return a - b;
+			case Operator.Multiply:
+				return a * b;
 			default:
 				throw new Error("Invalid Operator");
 		}

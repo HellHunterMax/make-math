@@ -10,6 +10,8 @@ const useMath = (operator: Operator, maxAnswer: number) => {
 				return generateSubtractEquation(id);
 			case Operator.Multiply:
 				return generateMultiplyEquation(id);
+			case Operator.Divide:
+				return generateDivideEquation(id);
 			default:
 				throw new Error("Invalid operator");
 		}
@@ -47,6 +49,20 @@ const useMath = (operator: Operator, maxAnswer: number) => {
 		const firstNumber = Math.floor(Math.random() * maxAnswer) + 1;
 		const secondNumber = Math.floor(Math.random() * 10) + 1;
 		const answer = firstNumber * secondNumber;
+
+		return {
+			id,
+			firstNumber,
+			secondNumber,
+			operator,
+			answer,
+		};
+	};
+
+	const generateDivideEquation = (id: number): mathQuestionProps => {
+		const secondNumber = Math.floor(Math.random() * 10) + 1; // ensuring secondNumber is at least 1
+		const answer = Math.floor(Math.random() * maxAnswer) + 1; // ensuring answer is at least 1
+		const firstNumber = secondNumber * answer; // ensuring firstNumber is a multiple of secondNumber
 
 		return {
 			id,

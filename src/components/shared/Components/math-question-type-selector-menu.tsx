@@ -32,7 +32,8 @@ export default function MathQuestionTypeSelectorMenu(
 			/>
 			<QuestionWithNumberInput
 				question={
-					props.selectedOperator === Operator.Multiply
+					props.selectedOperator === Operator.Multiply ||
+					props.selectedOperator === Operator.Divide
 						? "Hoogste tafel"
 						: "Hoogste antwoord"
 				}

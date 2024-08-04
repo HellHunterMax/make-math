@@ -10,6 +10,7 @@ const operators = [
 	{ label: "+ Plus", value: Operator.Add },
 	{ label: "- Min", value: Operator.Subtract },
 	{ label: "x Keer", value: Operator.Multiply },
+	{ label: ": Delen", value: Operator.Divide },
 ];
 
 export default function OperatorChoice({

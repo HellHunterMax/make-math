@@ -17,6 +17,10 @@ export default function Home() {
 						<span className="font-bold">Keer sommen:</span> 2 x 1 =
 						2
 					</li>
+					<li className="mb-1">
+						<span className="font-bold">Deel sommen:</span> 3 : 1 =
+						3
+					</li>
 				</ul>
 			</ul>
 			<p className="mb-4">

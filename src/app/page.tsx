@@ -13,6 +13,10 @@ export default function Home() {
 					<li className="mb-1">
 						<span className="font-bold">Min sommen:</span> 3 - 1 = 2
 					</li>
+					<li className="mb-1">
+						<span className="font-bold">Keer sommen:</span> 2 x 1 =
+						2
+					</li>
 				</ul>
 			</ul>
 			<p className="mb-4">

@@ -7,6 +7,9 @@ import { Button } from "@/components/ui/button";
 import MathQuestionTypeSelectorMenu from "@/components/shared/Components/math-question-type-selector-menu";
 import { maxMathQuestionCount, maxMaxNumber, minMathQuestionCount, minMaxNumber } from "@/constants/website-constants";
 import ContestPage from "./contest-page";
+import { PlayIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
+import { Separator } from "@/components/ui/separator";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export default function ContestMain() {
   const [players, setPlayers] = useState<player[]>([]);
@@ -50,39 +53,63 @@ export default function ContestMain() {
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      {!arePlayersSelected && !isContestStarted && (
-        <div className="flex flex-col gap-4">
-          <SelectContestPlayersMenu Players={players} SetPlayers={setPlayers} />
-          <Button variant="default" disabled={players.length < 2} onClick={onClickPlayersSelected}>
-            Klaar
-          </Button>
+    <TooltipProvider>
+      <div className="container mx-auto py-8 px-4">
+        <div className="max-w-3xl mx-auto space-y-6">
+          {!arePlayersSelected && !isContestStarted && (
+            <div className="space-y-6">
+              <SelectContestPlayersMenu Players={players} SetPlayers={setPlayers} />
+              <div className="flex flex-col items-center gap-2">
+                <Separator className="my-2" />
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button size="lg" disabled={players.length < 2} onClick={onClickPlayersSelected} className="min-w-[200px] gap-2">
+                      <ArrowRightIcon className="h-5 w-5" />
+                      <span>Volgende</span>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>{players.length < 2 ? "Voeg minimaal 2 spelers toe" : "Ga naar instellingen"}</TooltipContent>
+                </Tooltip>
+              </div>
+            </div>
+          )}
+
+          {arePlayersSelected && !isContestStarted && (
+            <div className="space-y-6">
+              <MathQuestionTypeSelectorMenu
+                mathQuestionCount={mathQuestionCount}
+                setMathQuestionCount={setMathQuestionCount}
+                maxNumber={maxNumber}
+                setmaxNumber={setmaxNumber}
+                selectedOperator={selectedOperator}
+                setOperator={setOperator}
+              />
+              <div className="flex flex-col items-center gap-2">
+                <Separator className="my-2" />
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button size="lg" disabled={isStartDisabled()} onClick={onClickStartContest} className="min-w-[200px] gap-2">
+                      <PlayIcon className="h-5 w-5" />
+                      <span>Start Wedstrijd</span>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>{isStartDisabled() ? "Controleer de instellingen" : "Begin de wedstrijd"}</TooltipContent>
+                </Tooltip>
+              </div>
+            </div>
+          )}
+
+          {isContestStarted && (
+            <ContestPage
+              players={players}
+              numberOfQuestions={mathQuestionCount}
+              maxNumber={maxNumber}
+              selectedOperator={selectedOperator}
+              resetContest={resetContest}
+            />
+          )}
         </div>
-      )}
-      {arePlayersSelected && !isContestStarted && (
-        <div className="flex flex-col gap-4">
-          <MathQuestionTypeSelectorMenu
-            mathQuestionCount={mathQuestionCount}
-            setMathQuestionCount={setMathQuestionCount}
-            maxNumber={maxNumber}
-            setmaxNumber={setmaxNumber}
-            selectedOperator={selectedOperator}
-            setOperator={setOperator}
-          />
-          <Button variant="default" disabled={isStartDisabled()} onClick={onClickStartContest}>
-            START
-          </Button>
-        </div>
-      )}
-      {isContestStarted && (
-        <ContestPage
-          players={players}
-          numberOfQuestions={mathQuestionCount}
-          maxNumber={maxNumber}
-          selectedOperator={selectedOperator}
-          resetContest={resetContest}
-        />
-      )}
-    </div>
+      </div>
+    </TooltipProvider>
   );
 }

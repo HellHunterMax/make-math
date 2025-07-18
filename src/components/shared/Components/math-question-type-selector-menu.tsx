@@ -2,50 +2,67 @@ import { Dispatch, SetStateAction } from "react";
 import QuestionWithNumberInput from "./question-with-answer";
 import { Operator } from "@/enums/operator";
 import OperatorChoice from "./operator-choice";
-import {
-	maxMathQuestionCount,
-	maxMaxNumber,
-	minMathQuestionCount,
-	minMaxNumber,
-} from "@/constants/website-constants";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { maxMathQuestionCount, maxMaxNumber, minMathQuestionCount, minMaxNumber } from "@/constants/website-constants";
 
-export type mathQuestionTypeSelectorMenuProps = {
-	mathQuestionCount: number;
-	setMathQuestionCount: Dispatch<SetStateAction<number>>;
-	maxNumber: number;
-	setmaxNumber: Dispatch<SetStateAction<number>>;
-	selectedOperator: Operator;
-	setOperator: Dispatch<SetStateAction<Operator>>;
+export type MathQuestionTypeSelectorMenuProps = {
+  mathQuestionCount: number;
+  setMathQuestionCount: Dispatch<SetStateAction<number>>;
+  maxNumber: number;
+  setmaxNumber: Dispatch<SetStateAction<number>>;
+  selectedOperator: Operator;
+  setOperator: Dispatch<SetStateAction<Operator>>;
 };
 
-export default function MathQuestionTypeSelectorMenu(
-	props: mathQuestionTypeSelectorMenuProps
-) {
-	return (
-		<div className="flex flex-col min-w-max gap-4">
-			<QuestionWithNumberInput
-				question="Hoeveel sommen"
-				setAnswer={props.setMathQuestionCount}
-				initial={props.mathQuestionCount}
-				max={maxMathQuestionCount}
-				min={minMathQuestionCount}
-			/>
-			<QuestionWithNumberInput
-				question={
-					props.selectedOperator === Operator.Multiply ||
-					props.selectedOperator === Operator.Divide
-						? "Hoogste tafel"
-						: "Hoogste antwoord"
-				}
-				setAnswer={props.setmaxNumber}
-				initial={props.maxNumber}
-				max={maxMaxNumber}
-				min={minMaxNumber}
-			/>
-			<OperatorChoice
-				chosenOperator={props.selectedOperator}
-				setOperator={props.setOperator}
-			/>
-		</div>
-	);
+export default function MathQuestionTypeSelectorMenu({
+  mathQuestionCount,
+  setMathQuestionCount,
+  maxNumber,
+  setmaxNumber,
+  selectedOperator,
+  setOperator,
+}: MathQuestionTypeSelectorMenuProps) {
+  return (
+    <Card className="w-full max-w-md mx-auto rounded-3xl border-[#40E0D0]/30">
+      <CardHeader className="space-y-1 p-6">
+        <h2 className="text-2xl font-semibold">Instellingen</h2>
+        <p className="text-muted-foreground">Pas de som instellingen aan</p>
+      </CardHeader>
+      <CardContent className="p-6 space-y-6">
+        <div className="space-y-4">
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <h3 className="font-medium">Aantal en Bereik</h3>
+              <Separator className="flex-1" />
+            </div>
+            <QuestionWithNumberInput
+              question="Hoeveel sommen"
+              setAnswer={setMathQuestionCount}
+              initial={mathQuestionCount}
+              max={maxMathQuestionCount}
+              min={minMathQuestionCount}
+            />
+            <QuestionWithNumberInput
+              question={
+                selectedOperator === Operator.Multiply || selectedOperator === Operator.Divide ? "Hoogste tafel" : "Hoogste antwoord"
+              }
+              setAnswer={setmaxNumber}
+              initial={maxNumber}
+              max={maxMaxNumber}
+              min={minMaxNumber}
+            />
+          </div>
+
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <h3 className="font-medium">Operator</h3>
+              <Separator className="flex-1" />
+            </div>
+            <OperatorChoice chosenOperator={selectedOperator} setOperator={setOperator} />
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
 }

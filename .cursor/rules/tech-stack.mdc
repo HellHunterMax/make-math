@@ -6,3 +6,4 @@ alwaysApply: true
 - use Tailwind css
 - use chadCN for components
 - for Ux design use Material Design M3 Expressive
+- use heroicons for icons

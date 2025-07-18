@@ -5,3 +5,4 @@ alwaysApply: true
 - use next.JS 15
 - use Tailwind css
 - use chadCN for components
+- for Ux design use Material Design M3 Expressive

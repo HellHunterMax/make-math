@@ -18,12 +18,12 @@ const operators = [
 
 export default function OperatorChoice({ chosenOperator, setOperator }: OperatorChoiceProps) {
   return (
-    <Card className="border-[#40E0D0]/30">
+    <Card className="border-[#40E0D0]/30 p-4">
       <CardContent className="pt-6">
         <RadioGroup
           value={chosenOperator}
           onValueChange={(value: string) => setOperator(value as Operator)}
-          className="grid grid-cols-2 gap-4">
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {operators.map((operator) => (
             <div key={operator.value} className="flex items-center space-x-2">
               <RadioGroupItem

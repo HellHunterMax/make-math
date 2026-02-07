@@ -77,7 +77,7 @@ export default function ContestMain() {
           {arePlayersSelected && !isContestStarted && (
             <div className="space-y-6">
               <MathQuestionTypeSelectorMenu
-                mathQuestionCount={mathQuestionCount ?? 0}
+                mathQuestionCount={mathQuestionCount ?? 1}
                 setMathQuestionCount={setMathQuestionCount}
                 maxNumber={maxNumber ?? 0}
                 setMaxNumber={setMaxNumber}

@@ -34,7 +34,7 @@ export default function TrainingMain() {
       )}
       {!showMathQuestions && (
         <MathQuestionTypeSelectorMenu
-          mathQuestionCount={mathQuestionCount ?? 0}
+          mathQuestionCount={mathQuestionCount ?? 1}
           setMathQuestionCount={setMathQuestionCount}
           maxNumber={maxNumber ?? 0}
           setMaxNumber={setMaxNumber}

@@ -32,7 +32,7 @@ export default function ContestPage({ players, numberOfQuestions, maxNumber, sel
   const contest = useContest(players, questions);
 
   return (
-    <div className="container mx-auto max-w-3xl py-8">
+    <div className="container mx-auto max-w-3xl">
       {contest.isContestFinished ? (
         <Card className="rounded-3xl border-[#40E0D0]/30">
           <CardContent className="p-4 sm:p-6 md:p-8">
@@ -42,11 +42,11 @@ export default function ContestPage({ players, numberOfQuestions, maxNumber, sel
                 <h2 className="text-xl sm:text-2xl font-semibold">Wedstrijd Afgelopen!</h2>
               </div>
               <ContestResults players={players} playerScores={contest.playerScores} />
-              <Button 
-              variant="outline" 
-              size="lg" 
-              onClick={resetContest} 
-              className="w-full sm:w-auto sm:min-w-[200px] shadow-sm hover:shadow-md transition-all">
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={resetContest}
+                className="w-full sm:w-auto sm:min-w-[200px] shadow-sm hover:shadow-md transition-all">
                 Opnieuw beginnen
               </Button>
             </div>
@@ -79,3 +79,4 @@ export default function ContestPage({ players, numberOfQuestions, maxNumber, sel
     </div>
   );
 }
+

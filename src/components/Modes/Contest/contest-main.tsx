@@ -54,8 +54,8 @@ export default function ContestMain() {
 
   return (
     <TooltipProvider>
-      <div className="container mx-auto py-8 px-4">
-        <div className="max-w-3xl mx-auto space-y-6">
+      <div className="container mx-auto p-2">
+        <div className="max-w-3xl mx-auto space-y-6 min-w-0 w-full">
           {!arePlayersSelected && !isContestStarted && (
             <div className="space-y-6">
               <SelectContestPlayersMenu Players={players} SetPlayers={setPlayers} />

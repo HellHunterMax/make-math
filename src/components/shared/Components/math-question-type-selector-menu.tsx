@@ -8,9 +8,9 @@ import { maxMathQuestionCount, maxMaxNumber, minMathQuestionCount, minMaxNumber 
 
 export type MathQuestionTypeSelectorMenuProps = {
   mathQuestionCount: number;
-  setMathQuestionCount: Dispatch<SetStateAction<number>>;
+  setMathQuestionCount: Dispatch<SetStateAction<number | null>>;
   maxNumber: number;
-  setmaxNumber: Dispatch<SetStateAction<number>>;
+  setMaxNumber: Dispatch<SetStateAction<number | null>>;
   selectedOperator: Operator;
   setOperator: Dispatch<SetStateAction<Operator>>;
 };
@@ -19,17 +19,17 @@ export default function MathQuestionTypeSelectorMenu({
   mathQuestionCount,
   setMathQuestionCount,
   maxNumber,
-  setmaxNumber,
+  setMaxNumber,
   selectedOperator,
   setOperator,
 }: MathQuestionTypeSelectorMenuProps) {
   return (
     <Card className="w-full max-w-md mx-auto rounded-3xl border-[#40E0D0]/30">
-      <CardHeader className="space-y-1 p-6">
-        <h2 className="text-2xl font-semibold">Instellingen</h2>
-        <p className="text-muted-foreground">Pas de som instellingen aan</p>
+      <CardHeader className="space-y-1 p-4 sm:p-6">
+        <h2 className="text-xl sm:text-2xl font-semibold">Instellingen</h2>
+        <p className="text-sm sm:text-base text-muted-foreground">Pas de som instellingen aan</p>
       </CardHeader>
-      <CardContent className="p-6 space-y-6">
+      <CardContent className="p-4 sm:p-6 space-y-4 sm:space-y-6">
         <div className="space-y-4">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
@@ -47,7 +47,7 @@ export default function MathQuestionTypeSelectorMenu({
               question={
                 selectedOperator === Operator.Multiply || selectedOperator === Operator.Divide ? "Hoogste tafel" : "Hoogste antwoord"
               }
-              setAnswer={setmaxNumber}
+              setAnswer={setMaxNumber}
               initial={maxNumber}
               max={maxMaxNumber}
               min={minMaxNumber}
@@ -66,3 +66,4 @@ export default function MathQuestionTypeSelectorMenu({
     </Card>
   );
 }
+

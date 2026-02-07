@@ -20,15 +20,16 @@ export function Sidebar({ className }: SidebarProps) {
 
   return (
     <>
-      {/* Mobile Trigger */}
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button variant="ghost" className="md:hidden fixed left-4 top-4 z-50" size="icon">
-            <Bars3Icon className="h-6 w-6" />
-            <span className="sr-only">Open Menu</span>
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="left" className="w-[240px] p-4">
+      {/* Mobile: header bar that reserves space so content cannot overlap */}
+      <header className="md:hidden flex items-center shrink-0">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="ghost" size="icon">
+              <Bars3Icon className="h-6 w-6" />
+              <span className="sr-only">Open Menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="w-[240px] p-4">
           <div className="flex flex-col gap-4 mt-8">
             {menuItems.map((item, index) => {
               const Icon = item.icon;
@@ -42,8 +43,9 @@ export function Sidebar({ className }: SidebarProps) {
               );
             })}
           </div>
-        </SheetContent>
-      </Sheet>
+          </SheetContent>
+        </Sheet>
+      </header>
 
       {/* Desktop Sidebar */}
       <nav className={cn("hidden md:flex flex-col gap-4 fixed left-0 top-0 z-30 h-full w-60 bg-slate-50 p-4 shadow-sm", className)}>

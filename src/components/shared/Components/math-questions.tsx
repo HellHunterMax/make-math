@@ -26,8 +26,8 @@ export default function MathQuestions(props: mathType) {
 
   return (
     <Card className="w-full max-w-3xl mx-auto rounded-3xl border-[#40E0D0]/30">
-      <CardContent className="p-8">
-        <div className="flex flex-col space-y-6">
+      <CardContent className="p-4 sm:p-6 md:p-8">
+        <div className="flex flex-col space-y-4 sm:space-y-6">
           {questions.map((question, index) => (
             <MathQuestion key={index} {...question} />
           ))}

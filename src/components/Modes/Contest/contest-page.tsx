@@ -32,17 +32,21 @@ export default function ContestPage({ players, numberOfQuestions, maxNumber, sel
   const contest = useContest(players, questions);
 
   return (
-    <div className="container mx-auto max-w-3xl py-8">
+    <div className="container mx-auto max-w-3xl">
       {contest.isContestFinished ? (
         <Card className="rounded-3xl border-[#40E0D0]/30">
-          <CardContent className="p-8">
-            <div className="flex flex-col items-center gap-8">
+          <CardContent className="p-4 sm:p-6 md:p-8">
+            <div className="flex flex-col items-center gap-6 sm:gap-8">
               <div className="flex items-center gap-3">
                 <TrophyIcon className="h-8 w-8 text-[#40E0D0]" />
-                <h2 className="text-2xl font-semibold">Wedstrijd Afgelopen!</h2>
+                <h2 className="text-xl sm:text-2xl font-semibold">Wedstrijd Afgelopen!</h2>
               </div>
               <ContestResults players={players} playerScores={contest.playerScores} />
-              <Button variant="outline" size="lg" onClick={resetContest} className="min-w-[200px] shadow-sm hover:shadow-md transition-all">
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={resetContest}
+                className="w-full sm:w-auto sm:min-w-[200px] shadow-sm hover:shadow-md transition-all">
                 Opnieuw beginnen
               </Button>
             </div>
@@ -50,11 +54,11 @@ export default function ContestPage({ players, numberOfQuestions, maxNumber, sel
         </Card>
       ) : (
         <Card className="rounded-3xl border-[#40E0D0]/30">
-          <CardContent className="p-8">
-            <div className="flex flex-col items-center gap-6">
+          <CardContent className="p-4 sm:p-6 md:p-8">
+            <div className="flex flex-col items-center gap-4 sm:gap-6">
               <div className="flex flex-col items-center gap-2">
                 <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Huidige Speler</h3>
-                <div className="text-2xl font-semibold text-[#40E0D0]">{contest.activePlayer.Name}</div>
+                <div className="text-xl sm:text-2xl font-semibold text-[#40E0D0]">{contest.activePlayer.Name}</div>
               </div>
 
               <div className="w-full max-w-xl mx-auto">
@@ -75,3 +79,4 @@ export default function ContestPage({ players, numberOfQuestions, maxNumber, sel
     </div>
   );
 }
+

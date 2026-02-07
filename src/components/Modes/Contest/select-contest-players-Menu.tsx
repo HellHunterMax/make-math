@@ -44,11 +44,11 @@ export default function SelectContestPlayersMenu(props: selectContestPlayersMenu
 
   return (
     <TooltipProvider>
-      <Card className="w-full max-w-2xl mx-auto rounded-3xl border-[#40E0D0]/30">
-        <CardHeader className="space-y-1 p-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-semibold">Spelers Selecteren</h2>
-            <Badge variant="outline" className="text-[#40E0D0]">
+      <Card className="w-full max-w-2xl mx-auto rounded-3xl border-[#40E0D0]/30 overflow-hidden min-w-0">
+        <CardHeader className="space-y-1 p-6 min-w-0">
+          <div className="flex flex-col gap-2">
+            <h2 className="text-xl sm:text-2xl font-semibold">Spelers Selecteren</h2>
+            <Badge variant="outline" className="text-[#40E0D0] w-fit">
               {props.Players.length}/10 spelers
             </Badge>
           </div>
@@ -61,19 +61,19 @@ export default function SelectContestPlayersMenu(props: selectContestPlayersMenu
           </div>
         </CardHeader>
 
-        <CardContent className="p-6 space-y-6">
+        <CardContent className="p-6 space-y-6 min-w-0">
           {props.Players.length > 0 && (
-            <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <h3 className="font-medium">Spelers</h3>
-                <Separator className="flex-1" />
+            <div className="space-y-4 min-w-0">
+              <div className="flex items-center gap-2 min-w-0">
+                <h3 className="font-medium shrink-0">Spelers</h3>
+                <Separator className="flex-1 min-w-0" />
               </div>
-              <div className="space-y-3">
+              <div className="space-y-3 min-w-0">
                 {props.Players.map((player) => (
                   <div
                     key={player.Id}
-                    className="flex items-center justify-between p-3 rounded-lg bg-muted/30 group hover:bg-muted/50 transition-colors">
-                    <span className="font-medium">{player.Name}</span>
+                    className="flex items-center justify-between gap-2 p-3 rounded-lg bg-muted/30 group hover:bg-muted/50 transition-colors min-w-0">
+                    <span className="font-medium truncate min-w-0">{player.Name}</span>
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <Button
@@ -94,8 +94,8 @@ export default function SelectContestPlayersMenu(props: selectContestPlayersMenu
             </div>
           )}
 
-          <div className="flex items-center gap-3">
-            <div className="relative flex-1">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 min-w-0">
+            <div className="relative flex-1 min-w-0">
               <Input
                 type="text"
                 value={name}
@@ -111,7 +111,7 @@ export default function SelectContestPlayersMenu(props: selectContestPlayersMenu
                   variant="outline"
                   disabled={props.Players.length > 9 || name.trim() === ""}
                   onClick={onClickAddPlayer}
-                  className="gap-2">
+                  className="gap-2 shrink-0 w-full sm:w-auto">
                   <UserPlusIcon className="h-5 w-5" />
                   <span>Voeg speler toe</span>
                 </Button>
@@ -120,8 +120,8 @@ export default function SelectContestPlayersMenu(props: selectContestPlayersMenu
                 {props.Players.length > 9
                   ? "Maximum aantal spelers bereikt"
                   : name.trim() === ""
-                  ? "Vul een naam in"
-                  : "Voeg nieuwe speler toe"}
+                    ? "Vul een naam in"
+                    : "Voeg nieuwe speler toe"}
               </TooltipContent>
             </Tooltip>
           </div>

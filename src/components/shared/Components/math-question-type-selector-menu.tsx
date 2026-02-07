@@ -8,9 +8,9 @@ import { maxMathQuestionCount, maxMaxNumber, minMathQuestionCount, minMaxNumber 
 
 export type MathQuestionTypeSelectorMenuProps = {
   mathQuestionCount: number;
-  setMathQuestionCount: Dispatch<SetStateAction<number>>;
+  setMathQuestionCount: Dispatch<SetStateAction<number | null>>;
   maxNumber: number;
-  setmaxNumber: Dispatch<SetStateAction<number>>;
+  setmaxNumber: Dispatch<SetStateAction<number | null>>;
   selectedOperator: Operator;
   setOperator: Dispatch<SetStateAction<Operator>>;
 };
@@ -66,3 +66,4 @@ export default function MathQuestionTypeSelectorMenu({
     </Card>
   );
 }
+

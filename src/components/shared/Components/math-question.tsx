@@ -41,8 +41,8 @@ export function MathQuestion({ id, firstNumber, secondNumber, operator, answer, 
   const resultClass = isCorrect ? "text-green-600" : "text-red-600";
 
   return (
-    <div className="grid grid-cols-[180px_100px_120px_auto] items-center gap-4">
-      <div className="text-lg font-medium justify-self-end">
+    <div className="flex flex-col sm:grid sm:grid-cols-[1fr_auto_auto_auto] md:grid-cols-[auto_100px_120px_auto] gap-3 sm:gap-4 items-center sm:items-center">
+      <div className="text-base sm:text-lg font-medium sm:justify-self-end justify-self-start w-full sm:w-auto text-center sm:text-right">
         {firstNumber} {operator} {secondNumber} =
       </div>
       <Input
@@ -52,7 +52,7 @@ export function MathQuestion({ id, firstNumber, secondNumber, operator, answer, 
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         className={cn(
-          "w-24 text-center font-medium border-2",
+          "w-full sm:w-20 md:w-24 text-center font-medium border-2",
           "shadow-sm hover:shadow transition-all duration-200",
           "focus:border-primary focus:ring-2 focus:ring-primary/20",
           !hideResult &&
@@ -63,12 +63,12 @@ export function MathQuestion({ id, firstNumber, secondNumber, operator, answer, 
         )}
       />
 
-      <div className={cn("font-bold min-w-[100px]", !hideResult && inputAnswer !== null ? resultClass : "opacity-0")}>
+      <div className={cn("font-bold w-full sm:w-auto sm:min-w-[80px] md:min-w-[100px] text-center sm:text-left text-sm sm:text-base", !hideResult && inputAnswer !== null ? resultClass : "opacity-0")}>
         {!hideResult ? (inputAnswer !== null ? resultText : "FOUT!") : ""}
       </div>
 
       {hideResult && (
-        <Button variant="outline" onClick={handleSetResult} className="min-w-[60px] shadow-sm hover:shadow-md transition-shadow">
+        <Button variant="outline" onClick={handleSetResult} className="w-full sm:w-auto sm:min-w-[60px] shadow-sm hover:shadow-md transition-shadow">
           Ok
         </Button>
       )}

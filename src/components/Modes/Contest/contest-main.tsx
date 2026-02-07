@@ -13,9 +13,9 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 
 export default function ContestMain() {
   const [players, setPlayers] = useState<player[]>([]);
-  const [mathQuestionCount, setMathQuestionCount] = useState(10);
-  const [maxNumber, setmaxNumber] = useState(10);
-  const [selectedOperator, setOperator] = useState(Operator.Add);
+  const [mathQuestionCount, setMathQuestionCount] = useState<number | null>(10);
+  const [maxNumber, setMaxNumber] = useState<number | null>(10);
+  const [selectedOperator, setSelectedOperator] = useState(Operator.Add);
 
   const [arePlayersSelected, setArePlayersSelected] = useState(false);
   const [isContestStarted, setIsContestStarted] = useState(false);
@@ -29,7 +29,7 @@ export default function ContestMain() {
   }
 
   function isStartDisabled(): boolean {
-    if (!maxNumber && !mathQuestionCount) {
+    if (!maxNumber || !mathQuestionCount) {
       return false;
     }
     return !(
@@ -77,12 +77,12 @@ export default function ContestMain() {
           {arePlayersSelected && !isContestStarted && (
             <div className="space-y-6">
               <MathQuestionTypeSelectorMenu
-                mathQuestionCount={mathQuestionCount}
+                mathQuestionCount={mathQuestionCount ?? 0}
                 setMathQuestionCount={setMathQuestionCount}
-                maxNumber={maxNumber}
-                setmaxNumber={setmaxNumber}
+                maxNumber={maxNumber ?? 0}
+                setMaxNumber={setMaxNumber}
                 selectedOperator={selectedOperator}
-                setOperator={setOperator}
+                setOperator={setSelectedOperator}
               />
               <div className="flex flex-col items-center gap-2">
                 <Separator className="my-2" />
@@ -102,8 +102,8 @@ export default function ContestMain() {
           {isContestStarted && (
             <ContestPage
               players={players}
-              numberOfQuestions={mathQuestionCount}
-              maxNumber={maxNumber}
+              numberOfQuestions={mathQuestionCount ?? 0}
+              maxNumber={maxNumber ?? 0}
               selectedOperator={selectedOperator}
               resetContest={resetContest}
             />

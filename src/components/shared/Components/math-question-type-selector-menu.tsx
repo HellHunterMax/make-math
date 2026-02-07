@@ -10,7 +10,7 @@ export type MathQuestionTypeSelectorMenuProps = {
   mathQuestionCount: number;
   setMathQuestionCount: Dispatch<SetStateAction<number | null>>;
   maxNumber: number;
-  setmaxNumber: Dispatch<SetStateAction<number | null>>;
+  setMaxNumber: Dispatch<SetStateAction<number | null>>;
   selectedOperator: Operator;
   setOperator: Dispatch<SetStateAction<Operator>>;
 };
@@ -19,7 +19,7 @@ export default function MathQuestionTypeSelectorMenu({
   mathQuestionCount,
   setMathQuestionCount,
   maxNumber,
-  setmaxNumber,
+  setMaxNumber,
   selectedOperator,
   setOperator,
 }: MathQuestionTypeSelectorMenuProps) {
@@ -47,7 +47,7 @@ export default function MathQuestionTypeSelectorMenu({
               question={
                 selectedOperator === Operator.Multiply || selectedOperator === Operator.Divide ? "Hoogste tafel" : "Hoogste antwoord"
               }
-              setAnswer={setmaxNumber}
+              setAnswer={setMaxNumber}
               initial={maxNumber}
               max={maxMaxNumber}
               min={minMaxNumber}

@@ -6,32 +6,32 @@ import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dispatch, SetStateAction, useState } from "react";
-import { player } from "./Models/player";
+import type { Player } from "./Models/player";
 import { v7 as uuidv7 } from "uuid";
 import { UserPlusIcon, UserMinusIcon } from "@heroicons/react/24/outline";
 import { cn } from "@/lib/utils";
 
-export type selectContestPlayersMenuProps = {
-  Players: player[];
-  SetPlayers: Dispatch<SetStateAction<player[]>>;
+export type SelectContestPlayersMenuProps = {
+  players: Player[];
+  setPlayers: Dispatch<SetStateAction<Player[]>>;
 };
 
-export default function SelectContestPlayersMenu(props: selectContestPlayersMenuProps) {
+export default function SelectContestPlayersMenu(props: SelectContestPlayersMenuProps) {
   const [name, setName] = useState("");
 
   function onClickAddPlayer() {
-    if (name.trim() !== "" && props.Players.length < 10) {
-      props.SetPlayers([...props.Players, { Id: uuidv7(), Name: name, answers: [] }]);
+    if (name.trim() !== "" && props.players.length < 10) {
+      props.setPlayers([...props.players, { Id: uuidv7(), Name: name, answers: [] }]);
       setName("");
     }
   }
 
   function onClickRemovePlayer(id: string) {
     if (id) {
-      const player = props.Players.find((x) => x.Id === id);
+      const player = props.players.find((x) => x.Id === id);
       if (player) {
-        const updatedPlayers = props.Players.filter((x) => x.Id !== id);
-        props.SetPlayers(updatedPlayers);
+        const updatedPlayers = props.players.filter((x) => x.Id !== id);
+        props.setPlayers(updatedPlayers);
       }
     }
   }
@@ -49,7 +49,7 @@ export default function SelectContestPlayersMenu(props: selectContestPlayersMenu
           <div className="flex flex-col gap-2">
             <h2 className="text-xl sm:text-2xl font-semibold">Spelers Selecteren</h2>
             <Badge variant="outline" className="text-[#40E0D0] w-fit">
-              {props.Players.length}/10 spelers
+              {props.players.length}/10 spelers
             </Badge>
           </div>
           <div className="bg-muted/50 rounded-lg p-4 space-y-2">
@@ -62,17 +62,18 @@ export default function SelectContestPlayersMenu(props: selectContestPlayersMenu
         </CardHeader>
 
         <CardContent className="p-6 space-y-6 min-w-0">
-          {props.Players.length > 0 && (
+          {props.players.length > 0 && (
             <div className="space-y-4 min-w-0">
               <div className="flex items-center gap-2 min-w-0">
                 <h3 className="font-medium shrink-0">Spelers</h3>
                 <Separator className="flex-1 min-w-0" />
               </div>
               <div className="space-y-3 min-w-0">
-                {props.Players.map((player) => (
+                {props.players.map((player) => (
                   <div
                     key={player.Id}
-                    className="flex items-center justify-between gap-2 p-3 rounded-lg bg-muted/30 group hover:bg-muted/50 transition-colors min-w-0">
+                    className="flex items-center justify-between gap-2 p-3 rounded-lg bg-muted/30 group hover:bg-muted/50 transition-colors min-w-0"
+                  >
                     <span className="font-medium truncate min-w-0">{player.Name}</span>
                     <Tooltip>
                       <TooltipTrigger asChild>
@@ -80,7 +81,8 @@ export default function SelectContestPlayersMenu(props: selectContestPlayersMenu
                           variant="ghost"
                           size="icon"
                           onClick={() => onClickRemovePlayer(player.Id)}
-                          className="opacity-50 hover:opacity-100 transition-opacity">
+                          className="opacity-50 hover:opacity-100 transition-opacity"
+                        >
                           <UserMinusIcon className="h-5 w-5 text-red-500" />
                         </Button>
                       </TooltipTrigger>
@@ -109,15 +111,16 @@ export default function SelectContestPlayersMenu(props: selectContestPlayersMenu
               <TooltipTrigger asChild>
                 <Button
                   variant="outline"
-                  disabled={props.Players.length > 9 || name.trim() === ""}
+                  disabled={props.players.length > 9 || name.trim() === ""}
                   onClick={onClickAddPlayer}
-                  className="gap-2 shrink-0 w-full sm:w-auto">
+                  className="gap-2 shrink-0 w-full sm:w-auto"
+                >
                   <UserPlusIcon className="h-5 w-5" />
                   <span>Voeg speler toe</span>
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
-                {props.Players.length > 9
+                {props.players.length > 9
                   ? "Maximum aantal spelers bereikt"
                   : name.trim() === ""
                     ? "Vul een naam in"

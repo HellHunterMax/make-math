@@ -1,8 +1,8 @@
-import mathQuestionProps from "@/components/shared/models/math-question-props";
+import type { MathQuestionProps } from "@/components/shared/models/math-question-props";
 import { Operator } from "@/enums/operator";
 
 const useMath = (operator: Operator, maxAnswer: number) => {
-  const generateMathEquation = (id: number): mathQuestionProps => {
+  const generateMathEquation = (id: number): MathQuestionProps => {
     switch (operator) {
       case Operator.Add:
         return generateAddEquation(id);
@@ -17,7 +17,7 @@ const useMath = (operator: Operator, maxAnswer: number) => {
     }
   };
 
-  const generateAddEquation = (id: number): mathQuestionProps => {
+  const generateAddEquation = (id: number): MathQuestionProps => {
     const answer = Math.floor(Math.random() * (maxAnswer + 1));
     const firstNumber = Math.floor(Math.random() * (answer + 1));
     const secondNumber = answer - firstNumber;
@@ -31,7 +31,7 @@ const useMath = (operator: Operator, maxAnswer: number) => {
     };
   };
 
-  const generateSubtractEquation = (id: number): mathQuestionProps => {
+  const generateSubtractEquation = (id: number): MathQuestionProps => {
     const firstNumber = Math.floor(Math.random() * (maxAnswer + 1));
     const secondNumber = Math.floor(Math.random() * (firstNumber + 1));
     const answer = calculate(firstNumber, secondNumber, operator);
@@ -45,7 +45,7 @@ const useMath = (operator: Operator, maxAnswer: number) => {
     };
   };
 
-  const generateMultiplyEquation = (id: number): mathQuestionProps => {
+  const generateMultiplyEquation = (id: number): MathQuestionProps => {
     const firstNumber = Math.floor(Math.random() * 10) + 1;
     const secondNumber = Math.floor(Math.random() * maxAnswer) + 1;
     const answer = firstNumber * secondNumber;
@@ -59,7 +59,7 @@ const useMath = (operator: Operator, maxAnswer: number) => {
     };
   };
 
-  const generateDivideEquation = (id: number): mathQuestionProps => {
+  const generateDivideEquation = (id: number): MathQuestionProps => {
     const answer = Math.floor(Math.random() * 10) + 1;
     const secondNumber = Math.floor(Math.random() * maxAnswer) + 1;
     const firstNumber = secondNumber * answer;

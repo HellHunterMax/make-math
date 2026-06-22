@@ -1,11 +1,19 @@
 "use client";
 import { useState } from "react";
-import mathQuestionProps from "../models/math-question-props";
+import type { MathQuestionProps } from "../models/math-question-props";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-export function MathQuestion({ id, firstNumber, secondNumber, operator, answer, hideResult, setResult }: mathQuestionProps) {
+export function MathQuestion({
+  id,
+  firstNumber,
+  secondNumber,
+  operator,
+  answer,
+  hideResult,
+  setResult,
+}: MathQuestionProps) {
   const [inputAnswer, setInputAnswer] = useState<number | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,7 +83,8 @@ export function MathQuestion({ id, firstNumber, secondNumber, operator, answer, 
         className={cn(
           "font-bold w-full sm:w-auto sm:min-w-[80px] md:min-w-[100px] text-center sm:text-left text-sm sm:text-base",
           !hideResult && inputAnswer !== null ? resultClass : "opacity-0",
-        )}>
+        )}
+      >
         {!hideResult && (inputAnswer !== null ? resultText : "FOUT!")}
       </div>
 
@@ -83,11 +92,11 @@ export function MathQuestion({ id, firstNumber, secondNumber, operator, answer, 
         <Button
           variant="outline"
           onClick={handleSetResult}
-          className="w-full sm:w-auto sm:min-w-[60px] shadow-sm hover:shadow-md transition-shadow">
+          className="w-full sm:w-auto sm:min-w-[60px] shadow-sm hover:shadow-md transition-shadow"
+        >
           Ok
         </Button>
       )}
     </div>
   );
 }
-

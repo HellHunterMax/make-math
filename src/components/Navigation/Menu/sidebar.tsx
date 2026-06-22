@@ -9,11 +9,12 @@ import { Bars3Icon, HomeIcon, CalculatorIcon, TrophyIcon } from "@heroicons/reac
 
 const menuItems = [
   { title: "Home", url: "/", icon: HomeIcon },
-  { title: "Sommen Maken", url: "/exercises", icon: CalculatorIcon },
+  { title: "Oefenen", url: "/exercises", icon: CalculatorIcon },
+  { title: "Examen", url: "/exam", icon: CalculatorIcon },
   { title: "Wedstrijd", url: "/contest", icon: TrophyIcon },
 ];
 
-interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {}
+type SidebarProps = React.HTMLAttributes<HTMLDivElement>;
 
 export function Sidebar({ className }: SidebarProps) {
   const pathname = usePathname();
@@ -30,25 +31,33 @@ export function Sidebar({ className }: SidebarProps) {
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="w-[240px] p-4">
-          <div className="flex flex-col gap-4 mt-8">
-            {menuItems.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <Link key={index} href={item.url}>
-                  <Button variant={pathname === item.url ? "default" : "ghost"} className="w-full justify-start gap-2">
-                    <Icon className="h-5 w-5" />
-                    {item.title}
-                  </Button>
-                </Link>
-              );
-            })}
-          </div>
+            <div className="flex flex-col gap-4 mt-8">
+              {menuItems.map((item, index) => {
+                const Icon = item.icon;
+                return (
+                  <Link key={index} href={item.url}>
+                    <Button
+                      variant={pathname === item.url ? "default" : "ghost"}
+                      className="w-full justify-start gap-2"
+                    >
+                      <Icon className="h-5 w-5" />
+                      {item.title}
+                    </Button>
+                  </Link>
+                );
+              })}
+            </div>
           </SheetContent>
         </Sheet>
       </header>
 
       {/* Desktop Sidebar */}
-      <nav className={cn("hidden md:flex flex-col gap-4 fixed left-0 top-0 z-30 h-full w-60 bg-slate-50 p-4 shadow-sm", className)}>
+      <nav
+        className={cn(
+          "hidden md:flex flex-col gap-4 fixed left-0 top-0 z-30 h-full w-60 bg-slate-50 p-4 shadow-sm",
+          className,
+        )}
+      >
         {menuItems.map((item, index) => {
           const Icon = item.icon;
           return (

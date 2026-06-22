@@ -45,7 +45,9 @@ export default function MathQuestionTypeSelectorMenu({
             />
             <QuestionWithNumberInput
               question={
-                selectedOperator === Operator.Multiply || selectedOperator === Operator.Divide ? "Hoogste tafel" : "Hoogste antwoord"
+                selectedOperator === Operator.Multiply || selectedOperator === Operator.Divide
+                  ? "Hoogste tafel"
+                  : "Hoogste antwoord"
               }
               setAnswer={setMaxNumber}
               initial={maxNumber}
@@ -66,4 +68,3 @@ export default function MathQuestionTypeSelectorMenu({
     </Card>
   );
 }
-

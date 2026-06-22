@@ -5,15 +5,17 @@ import { Operator } from "@/enums/operator";
 import useMath from "@/hooks/useMath";
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import type { MultiplyDivideConfig } from "@/components/shared/models/factor-range-config";
 
 export type mathType = {
   numberOfMaths: number;
   maxNumber: number;
   operator: Operator;
+  multiplyConfig?: MultiplyDivideConfig;
 };
 
 export default function MathQuestions(props: mathType) {
-  const mathGenerator = useMath(props.operator, props.maxNumber);
+  const mathGenerator = useMath(props.operator, props.maxNumber, props.multiplyConfig);
   const generateMathQuestions = () => {
     const questions = [];
     for (let i = 1; i < props.numberOfMaths + 1; i++) {

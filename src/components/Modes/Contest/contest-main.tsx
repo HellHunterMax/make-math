@@ -6,6 +6,8 @@ import { Operator } from "@/enums/operator";
 import { Button } from "@/components/ui/button";
 import MathQuestionTypeSelectorMenu from "@/components/shared/Components/math-question-type-selector-menu";
 import { maxMathQuestionCount, maxMaxNumber, minMathQuestionCount, minMaxNumber } from "@/constants/website-constants";
+import type { MultiplyDivideConfig } from "@/components/shared/models/factor-range-config";
+import { defaultMultiplyDivideConfig } from "@/components/shared/models/factor-range-config";
 import ContestPage from "./contest-page";
 import { PlayIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 import { Separator } from "@/components/ui/separator";
@@ -16,6 +18,7 @@ export default function ContestMain() {
   const [mathQuestionCount, setMathQuestionCount] = useState<number | null>(10);
   const [maxNumber, setMaxNumber] = useState<number | null>(10);
   const [selectedOperator, setSelectedOperator] = useState(Operator.Add);
+  const [multiplyConfig, setMultiplyConfig] = useState<MultiplyDivideConfig>(defaultMultiplyDivideConfig);
 
   const [arePlayersSelected, setArePlayersSelected] = useState(false);
   const [isContestStarted, setIsContestStarted] = useState(false);
@@ -31,6 +34,9 @@ export default function ContestMain() {
   function isStartDisabled(): boolean {
     if (!maxNumber || !mathQuestionCount) {
       return false;
+    }
+    if (selectedOperator === Operator.Multiply || selectedOperator === Operator.Divide) {
+      return !(mathQuestionCount > minMathQuestionCount - 1 && mathQuestionCount < maxMathQuestionCount + 1);
     }
     return !(
       maxNumber > minMaxNumber - 1 &&
@@ -90,6 +96,8 @@ export default function ContestMain() {
                 setMaxNumber={setMaxNumber}
                 selectedOperator={selectedOperator}
                 setOperator={setSelectedOperator}
+                multiplyConfig={multiplyConfig}
+                setMultiplyConfig={setMultiplyConfig}
               />
               <div className="flex flex-col items-center gap-2">
                 <Separator className="my-2" />
@@ -120,6 +128,7 @@ export default function ContestMain() {
               maxNumber={maxNumber ?? 0}
               selectedOperator={selectedOperator}
               resetContest={resetContest}
+              multiplyConfig={multiplyConfig}
             />
           )}
         </div>

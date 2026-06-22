@@ -1,6 +1,6 @@
 "use client";
 
-import { Dispatch, SetStateAction, useState, useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 export type questionWithNumberInputProps = {
   question: string;
@@ -11,22 +11,14 @@ export type questionWithNumberInputProps = {
 };
 
 export default function QuestionWithNumberInput(props: questionWithNumberInputProps) {
-  const [displayValue, setDisplayValue] = useState(String(props.initial));
-
-  useEffect(() => {
-    setDisplayValue(String(props.initial));
-  }, [props.initial]);
-
   function onChangeInput(value: string) {
     const num = Number.parseInt(value, 10);
     if (Number.isNaN(num)) {
       props.setAnswer(null);
-      setDisplayValue("");
       return;
     }
     const clamped = Math.min(props.max, Math.max(props.min, num));
     props.setAnswer(clamped);
-    setDisplayValue(String(clamped));
   }
   return (
     <div className="p-4 flex flex-col bg-white shadow-md rounded-xl bg-clip-border w-full">
@@ -36,7 +28,7 @@ export default function QuestionWithNumberInput(props: questionWithNumberInputPr
         type="text"
         inputMode="numeric"
         autoComplete="off"
-        value={displayValue}
+        value={String(props.initial)}
         onChange={(e) => onChangeInput(e.target.value)}
       />
     </div>

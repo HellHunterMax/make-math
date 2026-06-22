@@ -42,7 +42,9 @@ export default function TrainingMain() {
           setOperator={setSelectedOperator}
         />
       )}
-      {showMathQuestions && <MathQuestions maxNumber={maxNumber ?? 0} numberOfMaths={mathQuestionCount ?? 0} operator={selectedOperator} />}
+      {showMathQuestions && (
+        <MathQuestions maxNumber={maxNumber ?? 0} numberOfMaths={mathQuestionCount ?? 0} operator={selectedOperator} />
+      )}
       <Button variant="outline" disabled={isDisabled()} onClick={() => setShowMathQuestions(!showMathQuestions)}>
         {showMathQuestions ? "Aantal veranderen" : "SOMMEN Maken!"}
       </Button>

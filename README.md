@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Make Math
 
-## Getting Started
+Make Math is a Next.js math-practice app for children and families.
+It provides three route-level learning modes:
 
-First, run the development server:
+- Home: welcome and quick orientation.
+- Exercises: single-player free practice with immediate feedback.
+- Exam: temporary alias of Exercises (same behavior and UI contract for now).
+- Contest: multiplayer turn-based scoring mode.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Engineering documentation is English-first.
+UI text can remain Dutch while product and code contracts are documented in English.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Product Intent
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Audience: learners practicing basic arithmetic and adults guiding practice sessions.
+- Core value: quick arithmetic repetition with configurable difficulty and operator type.
+- Constraints:
+- Question counts and number ranges are bounded by shared constants.
+- Question generation must remain deterministic for a chosen operator contract.
+- Contest scoring compares submitted answers against generated answers.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Route Contracts
 
-## Learn More
+- `/`: static welcome route.
+- `/exercises`: canonical route for training behavior.
+- `/exam`: temporary alias of `/exercises`; do not implement divergent exam logic here until alias status is removed.
+- `/contest`: multiplayer flow (player setup, settings, active rounds, results).
 
-To learn more about Next.js, take a look at the following resources:
+Navigation intentionally exposes both `/exercises` and `/exam` while they are aliases so product intent remains visible.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Architecture Overview
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Route layer: `src/app/**`
+- Feature layer: `src/components/Modes/**`
+- Shared reusable UI/domain components: `src/components/shared/**`
+- Shared primitives: `src/components/ui/**`
+- Shared domain and utilities: `src/constants/**`, `src/enums/**`, `src/hooks/**`, `src/lib/**`
 
-## Deploy on Vercel
+Additional repository standards and boundaries are documented in:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `docs/repository-conventions.md`
+- `docs/ai-maintenance-playbooks.md`
+- `AGENTS.md`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Glossary
+
+- Question: one generated arithmetic exercise with operands, operator, and expected answer.
+- Operator: arithmetic operation (`+`, `-`, `x`, `:`).
+- Player: contest participant with an id, display name, and submitted answers.
+- Round: one active question for one active player during contest progression.
+- Exam session: currently equivalent to an Exercises session until exam behavior is split.
+- Contest result: score summary per player with one or more winners.
+
+## Contributor Workflow
+
+1. Install dependencies: `npm install`
+2. Start development server: `npm run dev`
+3. Run standard verification: `npm run verify`
+
+`npm run verify` runs lint, typecheck, tests, and formatting checks.
+
+For planned high-risk areas (contest state transitions and focus behavior), follow the no-blind-refactor checklist in `docs/ai-maintenance-playbooks.md` before changing code.

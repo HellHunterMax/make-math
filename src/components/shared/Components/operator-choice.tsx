@@ -23,7 +23,8 @@ export default function OperatorChoice({ chosenOperator, setOperator }: Operator
         <RadioGroup
           value={chosenOperator}
           onValueChange={(value: string) => setOperator(value as Operator)}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+        >
           {operators.map((operator) => (
             <div key={operator.value} className="flex items-center space-x-2">
               <RadioGroupItem
@@ -31,7 +32,10 @@ export default function OperatorChoice({ chosenOperator, setOperator }: Operator
                 id={`operator-${operator.value}`}
                 className="border-2 border-muted data-[state=checked]:border-[#40E0D0] data-[state=checked]:text-[#40E0D0]"
               />
-              <Label htmlFor={`operator-${operator.value}`} className="text-base font-medium cursor-pointer select-none">
+              <Label
+                htmlFor={`operator-${operator.value}`}
+                className="text-base font-medium cursor-pointer select-none"
+              >
                 {operator.label}
               </Label>
             </div>

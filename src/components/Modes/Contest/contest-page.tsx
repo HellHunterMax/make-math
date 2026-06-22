@@ -1,6 +1,6 @@
 "use client";
 import { Operator } from "@/enums/operator";
-import { player } from "./Models/player";
+import type { Player } from "./Models/player";
 import useMath from "@/hooks/useMath";
 import useContest from "./hooks/use-contest";
 import ContestResults from "./contest-results";
@@ -10,15 +10,21 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { TrophyIcon } from "@heroicons/react/24/outline";
 
-export type contestPageProps = {
-  players: player[];
+export type ContestPageProps = {
+  players: Player[];
   numberOfQuestions: number;
   maxNumber: number;
   selectedOperator: Operator;
   resetContest: () => void;
 };
 
-export default function ContestPage({ players, numberOfQuestions, maxNumber, selectedOperator, resetContest }: contestPageProps) {
+export default function ContestPage({
+  players,
+  numberOfQuestions,
+  maxNumber,
+  selectedOperator,
+  resetContest,
+}: ContestPageProps) {
   const mathGenerator = useMath(selectedOperator, maxNumber);
   const generateMathQuestions = () => {
     const questions = [];
@@ -46,7 +52,8 @@ export default function ContestPage({ players, numberOfQuestions, maxNumber, sel
                 variant="outline"
                 size="lg"
                 onClick={resetContest}
-                className="w-full sm:w-auto sm:min-w-[200px] shadow-sm hover:shadow-md transition-all">
+                className="w-full sm:w-auto sm:min-w-[200px] shadow-sm hover:shadow-md transition-all"
+              >
                 Opnieuw beginnen
               </Button>
             </div>
@@ -67,7 +74,7 @@ export default function ContestPage({ players, numberOfQuestions, maxNumber, sel
                   firstNumber={contest.activeQuestion.firstNumber}
                   secondNumber={contest.activeQuestion.secondNumber}
                   answer={contest.activeQuestion.answer}
-                  setResult={(result) => contest.SetAnswer(contest.activePlayer.Id, contest.activeQuestion.id, result)}
+                  setResult={(result) => contest.setAnswer(contest.activePlayer.Id, contest.activeQuestion.id, result)}
                   operator={contest.activeQuestion.operator}
                   hideResult
                 />
@@ -79,4 +86,3 @@ export default function ContestPage({ players, numberOfQuestions, maxNumber, sel
     </div>
   );
 }
-

@@ -1,7 +1,10 @@
 import type { MathQuestionProps } from "@/components/shared/models/math-question-props";
+import type { MultiplyDivideConfig } from "@/components/shared/models/factor-range-config";
+import { defaultMultiplyDivideConfig } from "@/components/shared/models/factor-range-config";
 import { Operator } from "@/enums/operator";
 
-const useMath = (operator: Operator, maxAnswer: number) => {
+const useMath = (operator: Operator, maxAnswer: number, multiplyConfig?: MultiplyDivideConfig) => {
+  const resolvedMultiplyConfig = multiplyConfig ?? defaultMultiplyDivideConfig;
   const generateMathEquation = (id: number): MathQuestionProps => {
     switch (operator) {
       case Operator.Add:
@@ -46,8 +49,9 @@ const useMath = (operator: Operator, maxAnswer: number) => {
   };
 
   const generateMultiplyEquation = (id: number): MathQuestionProps => {
-    const firstNumber = Math.floor(Math.random() * 10) + 1;
-    const secondNumber = Math.floor(Math.random() * maxAnswer) + 1;
+    const { firstFactor, secondFactor } = resolvedMultiplyConfig;
+    const firstNumber = Math.floor(Math.random() * (firstFactor.max - firstFactor.min + 1)) + firstFactor.min;
+    const secondNumber = Math.floor(Math.random() * (secondFactor.max - secondFactor.min + 1)) + secondFactor.min;
     const answer = firstNumber * secondNumber;
 
     return {
@@ -60,8 +64,9 @@ const useMath = (operator: Operator, maxAnswer: number) => {
   };
 
   const generateDivideEquation = (id: number): MathQuestionProps => {
-    const answer = Math.floor(Math.random() * 10) + 1;
-    const secondNumber = Math.floor(Math.random() * maxAnswer) + 1;
+    const { firstFactor, secondFactor } = resolvedMultiplyConfig;
+    const answer = Math.floor(Math.random() * (firstFactor.max - firstFactor.min + 1)) + firstFactor.min;
+    const secondNumber = Math.floor(Math.random() * (secondFactor.max - secondFactor.min + 1)) + secondFactor.min;
     const firstNumber = secondNumber * answer;
 
     return {

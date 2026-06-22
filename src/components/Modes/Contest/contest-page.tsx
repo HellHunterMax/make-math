@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { TrophyIcon } from "@heroicons/react/24/outline";
+import type { MultiplyDivideConfig } from "@/components/shared/models/factor-range-config";
 
 export type ContestPageProps = {
   players: Player[];
@@ -16,6 +17,7 @@ export type ContestPageProps = {
   maxNumber: number;
   selectedOperator: Operator;
   resetContest: () => void;
+  multiplyConfig?: MultiplyDivideConfig;
 };
 
 export default function ContestPage({
@@ -24,8 +26,9 @@ export default function ContestPage({
   maxNumber,
   selectedOperator,
   resetContest,
+  multiplyConfig,
 }: ContestPageProps) {
-  const mathGenerator = useMath(selectedOperator, maxNumber);
+  const mathGenerator = useMath(selectedOperator, maxNumber, multiplyConfig);
   const generateMathQuestions = () => {
     const questions = [];
     for (let i = 1; i < numberOfQuestions + 1; i++) {
